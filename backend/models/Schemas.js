@@ -2,19 +2,27 @@ const mongoose = require('mongoose');
 
 const PersonalInfoSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  title: { type: String, required: true },
+  subtitle: { type: String },
   tagline: { type: String },
+  bio1: { type: String },
+  bio2: { type: String },
   bio: { type: String },
   avatar: { type: String },
+  banner: { type: String },
   resumeLink: { type: String },
   email: { type: String },
-  phone: { type: String },
+  handle: { type: String },
   location: { type: String },
+  status: {
+    active: { type: Boolean, default: true },
+    listeningTo: { type: String }
+  },
   socials: {
     github: String,
     linkedin: String,
     twitter: String,
-    devto: String
+    devto: String,
+    email: String
   }
 }, { timestamps: true });
 
@@ -43,6 +51,7 @@ const ExperienceSchema = new mongoose.Schema({
   company: { type: String, required: true },
   location: { type: String },
   duration: { type: String, required: true },
+  current: { type: Boolean, default: false },
   highlights: [String]
 }, { timestamps: true });
 
@@ -82,6 +91,12 @@ const QuoteSchema = new mongoose.Schema({
   author: { type: String, required: true }
 }, { timestamps: true });
 
+const PersonalSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  subtitle: { type: String },
+  link: { type: String }
+}, { timestamps: true });
+
 module.exports = {
   PersonalInfo: mongoose.model('PersonalInfo', PersonalInfoSchema),
   Skill: mongoose.model('Skill', SkillSchema),
@@ -91,5 +106,7 @@ module.exports = {
   Message: mongoose.model('Message', MessageSchema),
   Writing: mongoose.model('Writing', WritingSchema),
   Gallery: mongoose.model('Gallery', GallerySchema),
-  Quote: mongoose.model('Quote', QuoteSchema)
+  Quote: mongoose.model('Quote', QuoteSchema),
+  Personal: mongoose.model('Personal', PersonalSchema)
 };
+

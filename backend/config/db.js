@@ -34,8 +34,12 @@ const connectDB = async () => {
     await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 2000 });
     console.log('✅ Connected to MongoDB via Mongoose');
     useFallbackDb = false;
+
+    // Automatically seed MongoDB if empty
+    const { seedDatabase } = require('../data/seedData');
+    await seedDatabase();
   } catch (error) {
-    console.log('⚠️ MongoDB connection not available. Switching to local JSON storage engine.');
+    console.log(`⚠️ MongoDB connection failed (${error.message}). Switching to local JSON storage engine.`);
     initLocalDb();
     useFallbackDb = true;
   }

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "seed": "node -e \"require('./data/seedData').seedDatabase()\""
+    "seed": "node -e \"require('./data/seedData').seedDatabase(true).then(() => process.exit(0)).catch(err => { console.error(err); process.exit(1); })\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
