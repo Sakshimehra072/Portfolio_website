@@ -884,11 +884,11 @@ const AdminDashboard = () => {
                     />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500 }}>X / Twitter</label>
+                    <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500 }}>LeetCode</label>
                     <input
                       type="text"
-                      value={personalInfo.socials?.twitter || ''}
-                      onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, socials: { ...personalInfo.socials, twitter: e.target.value } } })}
+                      value={personalInfo.socials?.leetcode || personalInfo.socials?.twitter || ''}
+                      onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, socials: { ...personalInfo.socials, leetcode: e.target.value, twitter: e.target.value } } })}
                       className="editorial-input"
                     />
                   </div>

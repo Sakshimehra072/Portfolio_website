@@ -4,6 +4,8 @@ const authMiddleware = require('../middleware/auth');
 const { isUsingFallback, getLocalDb, saveLocalDb } = require('../config/db');
 const { Message } = require('../models/Schemas');
 
+const { sendContactNotification } = require('../config/mailer');
+
 // POST /api/messages (Public Contact Form Submission)
 router.post('/', async (req, res) => {
   try {
@@ -11,6 +13,9 @@ router.post('/', async (req, res) => {
     if (!name || !email || !message) {
       return res.status(400).json({ message: 'Name, email, and message content are required.' });
     }
+
+    // Trigger email notification to sakshimehra072@gmail.com
+    sendContactNotification({ name, email, subject, message });
 
     if (isUsingFallback()) {
       const db = getLocalDb();

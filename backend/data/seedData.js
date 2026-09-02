@@ -9,6 +9,7 @@ const initialPortfolioData = {
     banner: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
     resumeLink: "#",
     email: "sakshimehra072@gmail.com",
+    phone: "+91 7717333507",
     handle: "@Sakshimehra072",
     location: "Punjab, India",
     status: {
@@ -18,7 +19,7 @@ const initialPortfolioData = {
     socials: {
       github: "https://github.com/Sakshimehra072",
       linkedin: "https://linkedin.com/in/sakshi-mehra-b91ab024b",
-      twitter: "https://leetcode.com/u/Sakshimehra/",
+      leetcode: "https://leetcode.com/u/Sakshimehra/",
       email: "mailto:sakshimehra072@gmail.com"
     }
   },

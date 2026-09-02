@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Twitter, Linkedin, Mail, Instagram } from 'lucide-react';
+import { Github, Code, Linkedin, Mail } from 'lucide-react';
 
 const Footer = ({ name = "Sakshi" }) => {
   return (
@@ -44,20 +44,17 @@ const Footer = ({ name = "Sakshi" }) => {
               Contact
             </h4>
             <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-              <a href="https://github.com" target="_blank" rel="noreferrer" style={socialIconStyle} title="GitHub">
+              <a href="https://github.com/Sakshimehra072" target="_blank" rel="noreferrer" style={socialIconStyle} title="GitHub">
                 <Github size={15} color="var(--text-secondary)" />
               </a>
-              <a href="https://x.com" target="_blank" rel="noreferrer" style={socialIconStyle} title="X">
-                <Twitter size={15} color="var(--text-secondary)" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" style={socialIconStyle} title="LinkedIn">
+              <a href="https://linkedin.com/in/sakshi-mehra-b91ab024b" target="_blank" rel="noreferrer" style={socialIconStyle} title="LinkedIn">
                 <Linkedin size={15} color="var(--text-secondary)" />
               </a>
-              <a href="mailto:sakshi.dev@example.com" style={socialIconStyle} title="Email">
-                <Mail size={15} color="var(--text-secondary)" />
+              <a href="https://leetcode.com/u/Sakshimehra/" target="_blank" rel="noreferrer" style={socialIconStyle} title="LeetCode">
+                <Code size={15} color="var(--text-secondary)" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" style={socialIconStyle} title="Instagram">
-                <Instagram size={15} color="var(--text-secondary)" />
+              <a href="mailto:sakshimehra072@gmail.com" style={socialIconStyle} title="Email">
+                <Mail size={15} color="var(--text-secondary)" />
               </a>
             </div>
             <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>

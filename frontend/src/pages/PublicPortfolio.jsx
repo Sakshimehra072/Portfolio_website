@@ -15,20 +15,20 @@ import portfolioAPI from '../services/api';
 
 const defaultSakshiInfo = {
   name: "Sakshi",
-  subtitle: "Engineer · Developer · 988id of Code",
-  tagline: "I think in systems, not just syntax.",
-  bio1: "I think in systems, not just syntax. I build with React, Next.js, Node, and MongoDB, choosing tools that let me ship fast and scale harder.",
+  subtitle: "Full Stack Developer · MCA · Web Engineer",
+  tagline: "Building scalable web apps with React, Next.js, Node.js & MongoDB.",
+  bio1: "Full Stack Developer with 1 year experience building web applications using Next.js, React.js, Node.js, Express.js, SQL and MongoDB. Developed an e-commerce platform, Learning Management System, and AI-powered interview preparation platform. Enjoy building user-friendly applications and continuously improving my technical skills.",
   bio2: "Passionate full-stack developer dedicated to crafting clean, high-performance web applications, intuitive interfaces, and robust backend architectures.",
   avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
   banner: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
-  email: "sakshi.dev@example.com",
-  phone: "",
-  location: "Greater Noida, India",
+  email: "sakshimehra072@gmail.com",
+  phone: "+91 7717333507",
+  location: "Punjab, India",
   socials: {
-    github: "https://github.com",
-    twitter: "https://x.com",
-    linkedin: "https://linkedin.com",
-    email: "mailto:sakshi.dev@example.com"
+    github: "https://github.com/Sakshimehra072",
+    linkedin: "https://linkedin.com/in/sakshi-mehra-b91ab024b",
+    leetcode: "https://leetcode.com/u/Sakshimehra/",
+    email: "mailto:sakshimehra072@gmail.com"
   }
 };
 

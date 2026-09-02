@@ -4,9 +4,9 @@ import portfolioAPI from '../services/api';
 
 const Contact = ({ personalInfo }) => {
   const {
-    email = "sakshi.dev@example.com",
-    phone = "",
-    location = "Greater Noida, India"
+    email = "sakshimehra072@gmail.com",
+    phone = "+91 7717333507",
+    location = "Punjab, India"
   } = personalInfo || {};
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });

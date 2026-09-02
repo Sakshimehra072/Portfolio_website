@@ -1,35 +1,35 @@
 import React from 'react';
 
 const defaultTechStack = [
-  'React', 'Next.js', 'TypeScript', 'Node.js', 'Express',
-  'MongoDB', 'Mongoose', 'Tailwind CSS', 'Shadcn UI',
-  'Framer Motion', 'Redux', 'AWS', 'Nginx'
+  'C++', 'JavaScript', 'TypeScript', 'React.js', 'Next.js',
+  'Node.js', 'Express.js', 'Tailwind CSS', 'MongoDB', 'MySQL',
+  'Firebase', 'Razorpay', 'VdoCipher', 'REST APIs', 'RBAC'
 ];
 
 const defaultExperiences = [
   {
-    company: "TechCorp",
-    role: "Full Stack Developer",
-    duration: "September 2025 – Current",
-    location: "Greater Noida, Sector 59",
-    current: true,
+    company: "Boxshin Display and Packing Pvt. Ltd.",
+    role: "Web Developer",
+    duration: "Nov 2025 – Apr 2026",
+    location: "Delhi, India",
+    current: false,
     highlights: [
-      "Developed an intelligent, high-performance AI chatbot utilizing the Groq API to deliver rapid, real-time conversational experiences.",
-      "Architected and built a comprehensive CRM platform featuring Role-Based Access Control.",
-      "Optimized backend APIs and complex database queries to significantly reduce loading times.",
-      "Managed VPS deployment environments across AWS EC2 and Hostinger.",
-      "Successfully delivered multiple full-stack projects using React, Next.js, Node.js, and MongoDB."
+      "Contributed to the development and enhancement of the company’s e-commerce website by designing and improving user interface components.",
+      "Improved website responsiveness and performance, helping deliver a smoother user experience across devices.",
+      "Integrated OTP-based user authentication and Razorpay payment gateway to support secure login and online transactions."
     ]
   },
   {
-    company: "Digivity",
-    role: "Full Stack Developer",
-    duration: "May 2025 – August 2025",
-    location: "Knowledge Park II, Greater Noida",
+    company: "Freelance / Learning Management System",
+    role: "Freelance Full Stack Developer",
+    duration: "Jun 2025 – Sep 2025",
+    location: "Remote",
     current: false,
     highlights: [
-      "Engineered RESTful web services and admin dashboards.",
-      "Integrated real-time API integrations and cloud storage modules."
+      "Collaborated with a client to design and develop a Learning Management System (LMS) for online course delivery and content management.",
+      "Implemented OTP-based authentication and Role Based Access Control (RBAC) for students and admins.",
+      "Developed responsive, component-based dashboards using React.js and Tailwind CSS.",
+      "Integrated protected video streaming using VdoCipher & Email.js and deployed the application, enabling online course access."
     ]
   }
 ];

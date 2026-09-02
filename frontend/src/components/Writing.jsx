@@ -8,22 +8,40 @@ const Writing = ({ writing = [] }) => {
 
   const displayArticles = Array.isArray(writing) && writing.length > 0 ? writing : [
     {
-      _id: "write_1",
-      date: "JUL 7, 2026",
-      readTime: "7 MIN READ",
-      title: "Beyond SEO: The New Web Visibility Stack",
-      excerpt: "Exploring modern search indexes, AI crawlers, structural web data, and how application visibility is shifting from traditional meta tags to semantic agent integration.",
-      content: "As artificial intelligence and automated agents become the primary consumption layer for web information, traditional search engine optimization (SEO) is undergoing its most radical transformation since the advent of Google PageRank.\n\nIn this new paradigm, structured JSON-LD schemas, clean semantic HTML5 markup, and real-time API availability matter far more than keyword density or superficial backlink farming.\n\n### The Shift to Semantic Agent Visibility\nWhen autonomous search agents index web applications, they do not parse pages visually; they inspect machine-readable contracts and standardized data structures. Developers building for the modern web must prioritize high-fidelity meta data, deterministic state endpoints, and fast response times.\n\n### Modern Indexing Principles\n1. Structural Integrity: Valid HTML5 landmark tags (header, main, nav, section) help LLM parsers extract content hierarchy accurately.\n2. Machine-Readable Metadata: OpenGraph, JSON-LD, and microdata tags empower autonomous crawlers to index entities and relationships cleanly.\n3. Performance & Speed: Sub-second response times prevent automated crawlers from timing out when ingesting dynamic web applications.\n\nAs web developers, engineering for both humans and intelligent AI clients is no longer optional—it is the foundation of future web presence.",
+      _id: "cert_1",
+      date: "INFOSYS",
+      readTime: "CERTIFICATION",
+      title: "Principles of Generative AI Certification – Infosys",
+      excerpt: "Certified in Generative AI Principles covering LLMs, Prompt Engineering, and AI application architectures.",
+      content: "Certified in Principles of Generative AI by Infosys. Gained foundational and practical knowledge of Generative AI, Large Language Models (LLMs), prompt design, and building AI-enhanced applications.",
       link: "#"
     },
     {
-      _id: "write_2",
-      date: "JUL 7, 2026",
-      readTime: "5 MIN READ",
-      title: "React vs Next.js: The Full Picture",
-      excerpt: "A deep dive into server components, client interactivity boundaries, streaming hydration, and choosing the right paradigm for performance.",
-      content: "Choosing between client-rendered React applications and full-stack Next.js frameworks requires a deep understanding of runtime performance, hydration boundaries, and deployment architecture.\n\nWhile React SPA models offer simple client-side routing and instant local state transitions, Next.js leverage Server Components (RSC) to minimize JavaScript bundle sizes delivered to the browser.\n\n### Interactivity & Hydration Boundaries\nBy defaulting to server components, Next.js keeps heavy utility libraries on the server side. Only interactive components marked with 'use client' trigger hydration on the browser client, resulting in significantly faster First Contentful Paint (FCP) and Time to Interactive (TTI).\n\n### When to Choose Which Paradigm\n- Single Page Applications (SPAs): Choose pure React for heavily interactive dashboards behind authentication where search indexing is irrelevant.\n- Content & E-commerce Platforms: Choose Next.js for high-SEO visibility, dynamic server caching, and sub-second page loads globally.",
+      _id: "cert_2",
+      date: "INFOSYS",
+      readTime: "CERTIFICATION",
+      title: "Artificial Intelligence Primer Certification – Infosys",
+      excerpt: "Foundational certification covering Machine Learning algorithms, AI models, and data pipelines.",
+      content: "Certified in Artificial Intelligence Primer by Infosys. Covered core AI/ML concepts, supervised & unsupervised machine learning algorithms, and intelligent system architectures.",
       link: "#"
+    },
+    {
+      _id: "cert_3",
+      date: "GEEKSFORGEEKS",
+      readTime: "CERTIFICATION",
+      title: "React.js Certification — GeeksforGeeks",
+      excerpt: "Comprehensive certification in React.js, hooks, state management, and modern component design.",
+      content: "Completed React.js Certification on GeeksforGeeks covering modern React features, custom hooks, context API, state management, and building high-performance web UIs.",
+      link: "#"
+    },
+    {
+      _id: "cert_4",
+      date: "LEETCODE",
+      readTime: "ACHIEVEMENT",
+      title: "Solved 100+ DSA & 50+ SQL Problems on LeetCode",
+      excerpt: "Demonstrated strong problem-solving skills in Data Structures, Algorithms, and SQL queries.",
+      content: "Successfully solved over 100 Data Structures & Algorithms problems and 50+ SQL database query challenges on LeetCode.",
+      link: "https://leetcode.com/u/Sakshimehra/"
     }
   ];
 

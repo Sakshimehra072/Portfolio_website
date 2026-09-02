@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Lock, User, KeyRound, ArrowRight, AlertCircle, Sun, Moon } from 'lucide-react';
+import { ShieldCheck, Lock, User, KeyRound, ArrowRight, AlertCircle, Sun, Moon, Eye, EyeOff } from 'lucide-react';
 import portfolioAPI from '../services/api';
 import { useTheme } from '../context/ThemeContext';
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('admin123');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -99,23 +100,6 @@ const AdminLogin = () => {
             </p>
           </div>
 
-          {/* Quick Demo Hint */}
-          <div style={{
-            background: 'var(--bg-tertiary)',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            padding: '10px 14px',
-            marginBottom: '20px',
-            fontSize: '0.8rem'
-          }}>
-            <div style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <KeyRound size={13} color="var(--text-secondary)" /> Login Credentials:
-            </div>
-            <div style={{ color: 'var(--text-secondary)' }}>
-              Username: <code style={codeStyle}>admin</code> &nbsp;|&nbsp; Password: <code style={codeStyle}>admin123</code>
-            </div>
-          </div>
-
           {error && (
             <div className="toast-msg toast-error">
               <AlertCircle size={16} /> {error}
@@ -131,7 +115,7 @@ const AdminLogin = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder="Enter username"
                 className="editorial-input"
                 required
               />
@@ -141,14 +125,36 @@ const AdminLogin = () => {
               <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>
                 <Lock size={13} /> Password
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="editorial-input"
-                required
-              />
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="editorial-input"
+                  style={{ paddingRight: '38px', width: '100%' }}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--text-secondary)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '4px'
+                  }}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
             </div>
 
             <button

@@ -1,7 +1,24 @@
 import React from 'react';
 
+const defaultEducation = [
+  {
+    degree: "Master of Computer Applications (MCA)",
+    institution: "Lovely Professional University, Punjab",
+    location: "Punjab, India",
+    duration: "Aug 2023 – May 2025",
+    details: "CGPA 7.2 | Specialization in Full Stack Engineering, Web Architectures, and Database Systems."
+  },
+  {
+    degree: "Bachelor of Computer Applications (BCA)",
+    institution: "Shanti Devi Arya Mahila College, Dinanagar",
+    location: "Punjab, India",
+    duration: "Aug 2019 – May 2022",
+    details: "81% | Foundation in Computer Applications, Data Structures, and Software Development."
+  }
+];
+
 const Education = ({ education = [] }) => {
-  if (!education || education.length === 0) return null;
+  const displayEducation = education && education.length > 0 ? education : defaultEducation;
 
   return (
     <section id="education" className="editorial-section">
@@ -9,7 +26,7 @@ const Education = ({ education = [] }) => {
         <h2 className="section-title">Education</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {education.map((edu, idx) => (
+          {displayEducation.map((edu, idx) => (
             <div key={edu._id || idx} style={{
               background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',

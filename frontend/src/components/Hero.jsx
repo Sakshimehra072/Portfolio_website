@@ -1,16 +1,16 @@
 import React from 'react';
-import { Github, Twitter, Linkedin, Mail, ArrowRight, FileText, ExternalLink } from 'lucide-react';
+import { Github, Code, Linkedin, Mail, ArrowRight, FileText, ExternalLink } from 'lucide-react';
 
 const Hero = ({ personalInfo }) => {
   const {
     name = "Sakshi",
-    subtitle = "Engineer · Developer · 988id of Code",
-    bio1 = "I think in systems, not just syntax. I build with React, Next.js, Node, and MongoDB, choosing tools that let me ship fast and scale harder.",
-    bio2 = "Dedicated to building resilient full-stack architectures, ultra-fast interfaces, and developer-focused products that perform effortlessly.",
+    subtitle = "Full Stack Developer · MCA · Web Engineer",
+    bio1 = "Full Stack Developer with 1 year experience building web applications using Next.js, React.js, Node.js, Express.js, SQL and MongoDB. Developed an e-commerce platform, Learning Management System, and AI-powered interview preparation platform. Enjoy building user-friendly applications and continuously improving my technical skills.",
+    bio2 = "Passionate full-stack developer dedicated to crafting clean, high-performance web applications, intuitive interfaces, and robust backend architectures.",
     avatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
     banner = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
     resumeLink = "#",
-    email = "sakshi.dev@example.com",
+    email = "sakshimehra072@gmail.com",
     socials = {}
   } = personalInfo || {};
 
@@ -88,14 +88,14 @@ const Hero = ({ personalInfo }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
             {/* Monochrome Small Outlined Social Icons */}
-            <a href={socials.github || "https://github.com"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="GitHub">
+            <a href={socials.github || "https://github.com/Sakshimehra072"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="GitHub">
               <Github size={15} color="var(--text-secondary)" />
             </a>
-            <a href={socials.twitter || "https://x.com"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="X / Twitter">
-              <Twitter size={15} color="var(--text-secondary)" />
-            </a>
-            <a href={socials.linkedin || "https://linkedin.com"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="LinkedIn">
+            <a href={socials.linkedin || "https://linkedin.com/in/sakshi-mehra-b91ab024b"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="LinkedIn">
               <Linkedin size={15} color="var(--text-secondary)" />
+            </a>
+            <a href={socials.leetcode || socials.twitter || "https://leetcode.com/u/Sakshimehra/"} target="_blank" rel="noreferrer" style={socialBtnStyle} title="LeetCode">
+              <Code size={15} color="var(--text-secondary)" />
             </a>
             <a href={socials.email || `mailto:${email}`} style={socialBtnStyle} title="Email">
               <Mail size={15} color="var(--text-secondary)" />

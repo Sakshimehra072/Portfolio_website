@@ -9,35 +9,48 @@ const Projects = ({ projects = [] }) => {
   const displayProjects = projects.length > 0 ? projects : [
     {
       _id: "p1",
-      title: "Veil Drop",
-      shortDescription: "A fast, secure, peer-to-peer file transfer application built with WebRTC. It lets users share files directly between devices without storing anything on a server.",
-      description: "Veil Drop is a peer-to-peer file sharing web app that I built to solve the problem of slow, server-dependent file transfers.\n\nInstead of uploading a file to a cloud provider and having the recipient download it, Veil Drop connects both users directly using WebRTC.\n\nI focused heavily on optimizing the JavaScript transfer loop. By using the File System Access API, the app streams large files directly to disk, bypassing memory limits.\n\nI also implemented strict backpressure handling to ensure the browser doesn't crash when transferring files at gigabit network speeds.\n\nFinally, it includes AES-GCM end-to-end encryption to keep the streams private.",
+      title: "BlogVerse | Online Blogging Platform",
+      shortDescription: "Implemented blog creation, editing, publishing, likes, comments, favourites, and sharing.",
+      description: "Implemented blog creation, editing, publishing, likes, comments, favourites, sharing, and user profile features with real-time database integration.\n\nBuilt a responsive, mobile-friendly UI using Tailwind CSS displaying recent blogs, categories, and personalized user content.\n\nIntegrated REST APIs for authentication and blog management with the frontend deployed on Vercel and a backend connected to a MySQL database on Railway.",
       keyFeatures: [
-        "High-performance WebRTC data channels optimized to saturate local network speeds by chunking files efficiently.",
-        "Memory-safe transfer logic using event-driven backpressure to pause uploads when network buffers fill up.",
-        "End-to-End Encryption using AES-GCM where the decryption keys are shared securely via URL fragments.",
-        "Direct-to-disk streaming using the modern File System Access API to bypass RAM limits on large transfers."
+        "Implemented blog creation, editing, publishing, likes, comments, favourites, and user profiles",
+        "Built responsive, mobile-friendly UI using Tailwind CSS displaying categories & personalized content",
+        "Integrated REST APIs for authentication and blog management connected to MySQL database on Railway"
       ],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop&q=80",
-      tags: ["WebRTC", "Socket.io", "React", "Node.js", "Cryptography"],
-      demo: "https://veildrop.demo",
-      github: "https://github.com"
+      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&auto=format&fit=crop&q=80",
+      tags: ["Next.js", "Node.js", "Express.js", "MySQL", "Railway", "Tailwind CSS"],
+      github: "https://github.com/Sakshimehra072",
+      demo: "https://github.com/Sakshimehra072"
     },
     {
       _id: "p2",
-      title: "LetsMeet",
-      shortDescription: "A massively scalable, Neo-Brutalist Omegle clone with real-time random video chat and text chatting worldwide.",
-      description: "LetsMeet is a real-time video discovery platform engineered for high concurrency and ultra-low latency peer connections.\n\nBuilt with WebRTC data and media streams, it connects random active users instantly using custom Socket.io signalling servers.\n\nI engineered a fast queue-matching algorithm on Node.js to pair users in milliseconds, handling reconnects and skip events seamlessly.",
+      title: "InterviewPrep | AI Interview Platform",
+      shortDescription: "AI interview platform generating role-specific questions with Vapi AI integration.",
+      description: "Developed an interview preparation platform that generates role-specific interview questions and supports mock interview practice.\n\nIntegrated Vapi AI workflows to dynamically generate interview questions based on the selected technology stack.\n\nImplemented Firebase Authentication and built responsive user interfaces using React.js for a seamless user experience.",
       keyFeatures: [
-        "Instant matching algorithm using WebRTC & Socket.io signalling.",
-        "Real-time video & audio streaming with low latency fallback.",
-        "Integrated text chat box with typing indicators and connection controls.",
-        "Responsive glassmorphism UI with camera and microphone toggles."
+        "Integrated Vapi AI workflows to dynamically generate interview questions by tech stack",
+        "Implemented Firebase Authentication & built responsive React.js user interfaces",
+        "Supports interactive mock interview practice with dynamic AI question generation"
       ],
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
-      tags: ["WebRTC", "Socket.io", "React", "Node.js", "TailwindCSS"],
-      demo: "https://letsmeet.demo",
-      github: "https://github.com"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80",
+      tags: ["TypeScript", "JavaScript", "React.js", "CSS", "Firebase", "Vapi AI"],
+      github: "https://github.com/Sakshimehra072",
+      demo: "https://github.com/Sakshimehra072"
+    },
+    {
+      _id: "p3",
+      title: "LMS | Learning Management System",
+      shortDescription: "Course delivery platform with OTP authentication, RBAC, and protected video streaming.",
+      description: "Collaborated with a client to design and develop a Learning Management System (LMS) for online course delivery and content management.\n\nImplemented OTP-based authentication and Role Based Access Control (RBAC) for students and admins.\n\nIntegrated protected video streaming using VdoCipher & Email.js and deployed the application, enabling online course access.",
+      keyFeatures: [
+        "Implemented OTP authentication & Role-Based Access Control (RBAC) for students and admins",
+        "Developed responsive, component-based dashboards using React.js and Tailwind CSS",
+        "Integrated protected video streaming via VdoCipher enabling secure online course access"
+      ],
+      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&auto=format&fit=crop&q=80",
+      tags: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "MongoDB", "Node.js", "VdoCipher"],
+      github: "https://github.com/Sakshimehra072",
+      demo: "https://github.com/Sakshimehra072"
     }
   ];
 
