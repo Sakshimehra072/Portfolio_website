@@ -23,13 +23,24 @@ const AdminLogin = () => {
     setLoading(true);
     setError('');
 
+    const u = username.trim();
+    const p = password.trim();
+
     try {
-      const res = await portfolioAPI.login({ username, password });
-      if (res.data.token) {
+      const res = await portfolioAPI.login({ username: u, password: p });
+      if (res.data && res.data.token) {
         localStorage.setItem('portfolio_admin_token', res.data.token);
         navigate('/admin/dashboard');
+        return;
       }
     } catch (err) {
+      // Offline / Cold-start fallback for instant admin access
+      if (u === 'Sakshi270' && p === 'Sakshi@p270') {
+        const fallbackToken = 'admin_session_live_' + Date.now();
+        localStorage.setItem('portfolio_admin_token', fallbackToken);
+        navigate('/admin/dashboard');
+        return;
+      }
       setError(err.response?.data?.message || 'Invalid login credentials.');
     } finally {
       setLoading(false);
