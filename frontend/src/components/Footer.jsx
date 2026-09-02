@@ -12,7 +12,7 @@ const Footer = ({ name = "Sakshi" }) => {
         {/* Navigation & Contact Two-Column Layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: '32px',
           marginBottom: '36px'
         }}>

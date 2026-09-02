@@ -374,29 +374,22 @@ const AdminDashboard = () => {
   const { personalInfo = {}, quote = {}, skills = [], projects = [], experiences = [], education = [], writing = [], gallery = [] } = portfolioData;
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', display: 'flex', color: 'var(--text-primary)' }}>
+    <div className="admin-layout" style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Sidebar Navigation */}
-      <aside style={{
-        width: '240px',
+      <aside className="admin-sidebar" style={{
         background: 'var(--bg-secondary)',
-        borderRight: '1px solid var(--border-color)',
-        padding: '24px 16px',
         display: 'flex',
         flexDirection: 'column',
-        position: 'fixed',
-        top: 0,
-        bottom: 0,
-        left: 0,
         zIndex: 10
       }}>
         {/* Brand */}
-        <div style={{ marginBottom: '28px', paddingLeft: '8px' }}>
+        <div style={{ marginBottom: '20px', paddingLeft: '8px' }}>
           <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>Admin Hub</h2>
           <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Management Portal</span>
         </div>
 
         {/* Tab Items */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1 }}>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1, overflowY: 'auto' }}>
           <SidebarTab icon={<LayoutDashboard size={16} />} label="Overview" active={activeTab === 'overview'} onClick={() => setActiveTab('overview')} />
           <SidebarTab icon={<User size={16} />} label="Personal Info" active={activeTab === 'info'} onClick={() => setActiveTab('info')} />
           <SidebarTab icon={<Cpu size={16} />} label="Skills" count={skills.length} active={activeTab === 'skills'} onClick={() => setActiveTab('skills')} />
@@ -410,7 +403,7 @@ const AdminDashboard = () => {
         </nav>
 
         {/* Quick Links, Theme Toggle & Logout */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '16px', borderTop: '1px solid var(--border-color)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '16px', borderTop: '1px solid var(--border-color)', marginTop: 'auto' }}>
           <button
             onClick={toggleTheme}
             style={{
@@ -466,7 +459,7 @@ const AdminDashboard = () => {
       </aside>
 
       {/* Main Content Area */}
-      <main style={{ marginLeft: '240px', flexGrow: 1, padding: '36px 40px 100px 40px' }}>
+      <main className="admin-main" style={{ flexGrow: 1 }}>
         {/* Toast Alert */}
         {toast.msg && (
           <div className={`toast-msg ${toast.type === 'success' ? 'toast-success' : 'toast-error'}`} style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 2000 }}>

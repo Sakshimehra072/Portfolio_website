@@ -19,7 +19,7 @@ const Hero = ({ personalInfo }) => {
       <div className="editorial-container">
         {/* Cover / Banner Image with Small Overlapping Circular Avatar */}
         <div style={{ position: 'relative', marginBottom: '24px' }}>
-          <div style={{
+          <div className="hero-banner-img" style={{
             width: '100%',
             height: '160px',
             borderRadius: '8px',
@@ -40,7 +40,7 @@ const Hero = ({ personalInfo }) => {
           </div>
 
           {/* Small Circular Profile Avatar Overlapping Bottom Left */}
-          <div style={{
+          <div className="hero-avatar-img" style={{
             position: 'absolute',
             bottom: '-18px',
             left: '10px',
@@ -66,7 +66,7 @@ const Hero = ({ personalInfo }) => {
 
         {/* Developer Identity */}
         <div style={{ marginTop: '28px', marginBottom: '20px' }}>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: '4px' }}>
+          <h1 className="hero-name" style={{ fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: '4px' }}>
             {name}
           </h1>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 400 }}>

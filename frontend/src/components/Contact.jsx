@@ -38,19 +38,14 @@ const Contact = ({ personalInfo }) => {
       <div className="editorial-container">
         <h2 className="section-title">Get in touch</h2>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(260px, 1fr) 1.5fr',
-          gap: '24px',
-          alignItems: 'start'
-        }}>
+        <div className="contact-grid">
           {/* Left Column: Direct Info */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={infoCardStyle}>
               <Mail size={16} color="var(--text-secondary)" />
-              <div>
+              <div style={{ minWidth: 0, wordBreak: 'break-word' }}>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email</span>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-primary)' }}>{email}</h4>
+                <h4 style={{ fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-primary)', wordBreak: 'break-all' }}>{email}</h4>
               </div>
             </div>
 
@@ -78,7 +73,7 @@ const Contact = ({ personalInfo }) => {
             background: 'var(--bg-secondary)',
             border: '1px solid var(--border-color)',
             borderRadius: '10px',
-            padding: '24px',
+            padding: '20px',
             display: 'flex',
             flexDirection: 'column',
             gap: '14px'
@@ -94,7 +89,7 @@ const Contact = ({ personalInfo }) => {
               </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div className="contact-inputs-row">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Your Name *</label>
                 <input

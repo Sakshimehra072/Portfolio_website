@@ -26,7 +26,7 @@ const Navbar = ({ onOpenSearch }) => {
         justifyContent: 'space-between'
       }}>
         {/* Left Side Minimal Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div className="nav-links-container" style={{ paddingRight: '8px' }}>
           {!isAdminPath ? (
             <>
               <a href="#" style={navLinkStyle}>Home</a>
@@ -42,7 +42,7 @@ const Navbar = ({ onOpenSearch }) => {
         </div>
 
         {/* Right Side Theme Toggle, Search & Admin Indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
           {/* Light / Dark Mode Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -68,19 +68,19 @@ const Navbar = ({ onOpenSearch }) => {
           <button
             id="search-modal-trigger"
             onClick={onOpenSearch}
+            className="search-btn-responsive"
             style={{
               background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',
               borderRadius: '8px',
-              padding: '6px 14px',
+              padding: '6px 12px',
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '8px',
               color: 'var(--text-secondary)',
               fontSize: '0.8rem',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              minWidth: '200px',
               textAlign: 'left'
             }}
             onMouseEnter={(e) => {
@@ -92,7 +92,7 @@ const Navbar = ({ onOpenSearch }) => {
             title="Search website"
           >
             <Search size={14} color="var(--text-secondary)" />
-            <span style={{ color: 'var(--text-muted)', flex: 1, fontSize: '0.78rem' }}>
+            <span className="search-btn-text" style={{ color: 'var(--text-muted)', flex: 1, fontSize: '0.78rem' }}>
               Search...
             </span>
           </button>

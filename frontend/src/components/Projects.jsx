@@ -255,12 +255,7 @@ const Projects = ({ projects = [] }) => {
             <div style={{ borderBottom: '1px dashed var(--border-color)', marginBottom: '32px' }} />
 
             {/* Technologies & Links Section */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '24px',
-              marginBottom: '40px'
-            }}>
+            <div className="project-modal-grid">
               {/* Technologies */}
               <div>
                 <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '12px' }}>
