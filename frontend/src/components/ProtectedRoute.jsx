@@ -14,13 +14,19 @@ const ProtectedRoute = ({ children }) => {
       return;
     }
 
+    // Admin token present -> grant access immediately
+    setAuthenticated(true);
+
     portfolioAPI.verifyAuth()
       .then(() => {
         setAuthenticated(true);
       })
-      .catch(() => {
-        localStorage.removeItem('portfolio_admin_token');
-        setAuthenticated(false);
+      .catch((err) => {
+        // Only revoke session if server explicitly returns 401 Unauthorized
+        if (err.response && err.response.status === 401) {
+          localStorage.removeItem('portfolio_admin_token');
+          setAuthenticated(false);
+        }
       })
       .finally(() => {
         setLoading(false);

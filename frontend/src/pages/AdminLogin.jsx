@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ShieldCheck, Lock, User, KeyRound, ArrowRight, AlertCircle, Sun, Moon, Eye, EyeOff } from 'lucide-react';
 import portfolioAPI from '../services/api';
@@ -12,6 +12,14 @@ const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+
+  // Redirect to admin dashboard automatically if already authenticated
+  useEffect(() => {
+    const token = localStorage.getItem('portfolio_admin_token');
+    if (token) {
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
