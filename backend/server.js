@@ -13,8 +13,24 @@ const INITIAL_PORT = Number(process.env.PORT || 5000);
 // Connect Database
 connectDB();
 
-// Middleware
-app.use(cors());
+// CORS Configuration supporting local and live Vercel deployment
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5000',
+  'http://localhost:5001',
+  'https://portfolio-website-ivory-nine-82.vercel.app',
+  process.env.LIVE_FRONTEND_URL
+].filter(Boolean);
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 

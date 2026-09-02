@@ -115,7 +115,7 @@ const AdminLogin = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter username"
+                placeholder="Enter Admin's name"
                 className="editorial-input"
                 required
               />
@@ -130,7 +130,7 @@ const AdminLogin = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="Enter Password"
                   className="editorial-input"
                   style={{ paddingRight: '38px', width: '100%' }}
                   required
