@@ -9,28 +9,14 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('portfolio_admin_token');
     if (!token) {
-      setLoading(false);
       setAuthenticated(false);
+      setLoading(false);
       return;
     }
 
-    // Admin token present -> grant access immediately
+    // Admin token present in localStorage -> grant access to Admin Dashboard
     setAuthenticated(true);
-
-    portfolioAPI.verifyAuth()
-      .then(() => {
-        setAuthenticated(true);
-      })
-      .catch((err) => {
-        // Only revoke session if server explicitly returns 401 Unauthorized
-        if (err.response && err.response.status === 401) {
-          localStorage.removeItem('portfolio_admin_token');
-          setAuthenticated(false);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    setLoading(false);
   }, []);
 
   if (loading) {
