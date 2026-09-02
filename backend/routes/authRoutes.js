@@ -3,9 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middleware/auth');
 
-// Static Credentials configured via Environment or defaults
-const ADMIN_USERNAME = process.env.ADMIN_USER || 'Sakshi270';
-const ADMIN_PASSWORD = process.env.ADMIN_PASS || 'Sakshi@p270';
+// Credentials configured strictly via Environment Variables
 const JWT_SECRET = process.env.JWT_SECRET || 'portfolio_super_secret_jwt_key_2026_antigravity';
 
 // POST /api/auth/login
@@ -18,19 +16,18 @@ router.post('/login', (req, res) => {
 
   const u = (username || '').trim();
   const p = (password || '').trim();
-  const validUser = (process.env.ADMIN_USER || 'Sakshi270').trim();
-  const validPass = (process.env.ADMIN_PASS || 'Sakshi@p270').trim();
+  const validUser = (process.env.ADMIN_USER || '').trim();
+  const validPass = (process.env.ADMIN_PASS || '').trim();
 
-  const isMatch = (u === validUser && p === validPass) ||
-                  (u === 'Sakshi270' && p === 'Sakshi@p270');
+  const isMatch = validUser && validPass && u === validUser && p === validPass;
 
   if (isMatch) {
-    const token = jwt.sign({ username: 'Sakshi270', role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ username: validUser, role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
     return res.json({
       success: true,
       message: 'Login successful',
       token,
-      user: { username: 'Sakshi270', role: 'admin' }
+      user: { username: validUser, role: 'admin' }
     });
   } else {
     return res.status(401).json({ message: 'Invalid username or password.' });

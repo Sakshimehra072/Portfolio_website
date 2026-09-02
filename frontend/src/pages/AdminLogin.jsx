@@ -34,8 +34,10 @@ const AdminLogin = () => {
         return;
       }
     } catch (err) {
-      // Offline / Cold-start fallback for instant admin access
-      if (u === 'Sakshi270' && p === 'Sakshi@p270') {
+      // Env-based fallback without hardcoded strings in source code
+      const envUser = (import.meta.env.VITE_ADMIN_USER || '').trim();
+      const envPass = (import.meta.env.VITE_ADMIN_PASS || '').trim();
+      if (envUser && envPass && u === envUser && p === envPass) {
         const fallbackToken = 'admin_session_live_' + Date.now();
         localStorage.setItem('portfolio_admin_token', fallbackToken);
         navigate('/admin/dashboard');
