@@ -14,9 +14,13 @@ const ProtectedRoute = ({ children }) => {
       return;
     }
 
-    // Admin token present in localStorage -> grant access to Admin Dashboard
-    setAuthenticated(true);
-    setLoading(false);
+    portfolioAPI.verifyAuth()
+      .then(() => setAuthenticated(true))
+      .catch(() => {
+        localStorage.removeItem('portfolio_admin_token');
+        setAuthenticated(false);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {

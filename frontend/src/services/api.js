@@ -13,6 +13,16 @@ API.interceptors.request.use((config) => {
   return config;
 }, (error) => Promise.reject(error));
 
+API.interceptors.response.use((response) => response, (error) => {
+  if (error.response?.status === 401) {
+    localStorage.removeItem('portfolio_admin_token');
+    if (window.location.pathname.startsWith('/admin') && window.location.pathname !== '/admin/login') {
+      window.location.assign('/admin/login');
+    }
+  }
+  return Promise.reject(error);
+});
+
 export const portfolioAPI = {
   // Auth
   login: (credentials) => API.post('/auth/login', credentials),

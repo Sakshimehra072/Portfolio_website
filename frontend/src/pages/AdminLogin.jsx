@@ -13,12 +13,8 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
-  // Redirect to admin dashboard automatically if already authenticated
   useEffect(() => {
-    const token = localStorage.getItem('portfolio_admin_token');
-    if (token) {
-      navigate('/admin/dashboard', { replace: true });
-    }
+    localStorage.removeItem('portfolio_admin_token');
   }, [navigate]);
 
   const handleLogin = async (e) => {
@@ -41,15 +37,9 @@ const AdminLogin = () => {
         navigate('/admin/dashboard', { replace: true });
         return;
       }
-      // Fallback if res.data.token was missing
-      const token = 'admin_session_' + Date.now();
-      localStorage.setItem('portfolio_admin_token', token);
-      navigate('/admin/dashboard', { replace: true });
+      setError('Login failed: the server did not return an authentication token.');
     } catch (err) {
-      // Safe fallback on network or backend cold-start
-      const token = 'admin_session_' + Date.now();
-      localStorage.setItem('portfolio_admin_token', token);
-      navigate('/admin/dashboard', { replace: true });
+      setError(err.response?.data?.message || 'Unable to sign in. Please check that the backend is running.');
     } finally {
       setLoading(false);
     }
