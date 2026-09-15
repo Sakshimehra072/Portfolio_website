@@ -48,7 +48,12 @@ app.use('/api/gallery', require('./routes/galleryRoutes'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  const { isUsingFallback } = require('./config/db');
+  res.json({
+    status: 'ok',
+    database: isUsingFallback() ? 'local_json_fallback' : 'mongodb',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Root endpoint info
