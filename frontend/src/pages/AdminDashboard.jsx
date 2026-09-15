@@ -24,7 +24,8 @@ import {
   Sun,
   Moon,
   FileText,
-  Quote as QuoteIcon
+  Quote as QuoteIcon,
+  Award
 } from 'lucide-react';
 import portfolioAPI from '../services/api';
 import { useTheme } from '../context/ThemeContext';
@@ -55,7 +56,8 @@ const AdminDashboard = () => {
     skills: [],
     projects: [],
     experiences: [],
-    education: []
+    education: [],
+    certificates: []
   });
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -283,6 +285,34 @@ const AdminDashboard = () => {
     }
   };
 
+  // --- CRUD Handlers for Certificates ---
+  const handleSaveCertificate = async (certData) => {
+    try {
+      if (certData._id) {
+        await portfolioAPI.updateCertificate(certData._id, certData);
+        showNotification('success', 'Certificate entry updated successfully!');
+      } else {
+        await portfolioAPI.createCertificate(certData);
+        showNotification('success', 'New certificate entry created!');
+      }
+      setModalState({ open: false, type: null, data: null });
+      fetchData();
+    } catch (err) {
+      showNotification('error', err.response?.data?.message || 'Operation failed');
+    }
+  };
+
+  const handleDeleteCertificate = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this certificate?')) return;
+    try {
+      await portfolioAPI.deleteCertificate(id);
+      showNotification('success', 'Certificate entry deleted successfully');
+      fetchData();
+    } catch (err) {
+      showNotification('error', 'Failed to delete certificate entry');
+    }
+  };
+
   // --- CRUD Handlers for Writing / Blogs ---
   const handleSaveWriting = async (writingData) => {
     try {
@@ -371,7 +401,7 @@ const AdminDashboard = () => {
     );
   }
 
-  const { personalInfo = {}, quote = {}, skills = [], projects = [], experiences = [], education = [], writing = [], gallery = [] } = portfolioData;
+  const { personalInfo = {}, quote = {}, skills = [], projects = [], experiences = [], education = [], certificates = [], writing = [], gallery = [] } = portfolioData;
 
   return (
     <div className="admin-layout" style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
@@ -396,6 +426,7 @@ const AdminDashboard = () => {
           <SidebarTab icon={<Briefcase size={16} />} label="Experience" count={experiences.length} active={activeTab === 'experience'} onClick={() => setActiveTab('experience')} />
           <SidebarTab icon={<FolderGit2 size={16} />} label="Projects" count={projects.length} active={activeTab === 'projects'} onClick={() => setActiveTab('projects')} />
           <SidebarTab icon={<GraduationCap size={16} />} label="Education" count={education.length} active={activeTab === 'education'} onClick={() => setActiveTab('education')} />
+          <SidebarTab icon={<Award size={16} />} label="Certificates" count={certificates.length} active={activeTab === 'certificates'} onClick={() => setActiveTab('certificates')} />
           <SidebarTab icon={<FileText size={16} />} label="Writing / Blogs" count={writing.length} active={activeTab === 'writing'} onClick={() => setActiveTab('writing')} />
           <SidebarTab icon={<ImageIcon size={16} />} label="Photo Gallery" count={gallery.length} active={activeTab === 'gallery'} onClick={() => setActiveTab('gallery')} />
           <SidebarTab icon={<QuoteIcon size={16} />} label="Quote" active={activeTab === 'quote'} onClick={() => setActiveTab('quote')} />
@@ -486,6 +517,7 @@ const AdminDashboard = () => {
               <StatCard title="Tech Skills" value={skills.length} icon={<Cpu size={20} color="var(--text-secondary)" />} />
               <StatCard title="Work Experience" value={experiences.length} icon={<Briefcase size={20} color="var(--text-secondary)" />} />
               <StatCard title="Academic Entries" value={education.length} icon={<GraduationCap size={20} color="var(--text-secondary)" />} />
+              <StatCard title="Certificates" value={certificates.length} icon={<Award size={20} color="var(--text-secondary)" />} />
               <StatCard title="Messages Inbox" value={messages.length} icon={<Mail size={20} color="var(--text-secondary)" />} />
             </div>
 
@@ -513,6 +545,9 @@ const AdminDashboard = () => {
                 </button>
                 <button onClick={() => setModalState({ open: true, type: 'education', data: null })} style={secondaryBtnStyle}>
                   <Plus size={14} /> Add Education
+                </button>
+                <button onClick={() => setModalState({ open: true, type: 'certificate', data: null })} style={secondaryBtnStyle}>
+                  <Plus size={14} /> Add Certificate
                 </button>
               </div>
             </div>
@@ -1211,6 +1246,81 @@ const AdminDashboard = () => {
           </div>
         )}
 
+        {/* TAB: CERTIFICATES */}
+        {activeTab === 'certificates' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <div>
+                <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>Manage Certificates</h1>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Add, edit, or remove certificates, awards, and credentials.</p>
+              </div>
+              <button onClick={() => setModalState({ open: true, type: 'certificate', data: null })} style={primaryBtnStyle}>
+                <Plus size={14} /> Add Certificate
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {certificates.length === 0 ? (
+                <div style={{ padding: '32px', textAlign: 'center', color: 'var(--text-muted)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px' }}>
+                  No certificates found. Click "+ Add Certificate" to add your first entry.
+                </div>
+              ) : (
+                certificates.map(cert => (
+                  <div key={cert._id} style={{
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '8px',
+                    padding: '20px'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                          <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{cert.name}</h3>
+                          {cert.issueDate && (
+                            <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', background: 'var(--bg-tertiary)', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--border-subtle)' }}>
+                              {cert.issueDate}
+                            </span>
+                          )}
+                        </div>
+                        <h4 style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                          {cert.organization}
+                        </h4>
+                        {cert.description && (
+                          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '6px', lineHeight: '1.5' }}>
+                            {cert.description}
+                          </p>
+                        )}
+                        {(cert.link || cert.file) && (
+                          <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
+                            {cert.link && cert.link !== '#' && (
+                              <a href={cert.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--text-primary)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                <ExternalLink size={12} /> View Link
+                              </a>
+                            )}
+                            {cert.file && (
+                              <a href={cert.file} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.75rem', color: 'var(--text-primary)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                <FileText size={12} /> View File
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        <button onClick={() => setModalState({ open: true, type: 'certificate', data: cert })} style={iconBtnStyle} title="Edit Certificate">
+                          <Edit size={14} />
+                        </button>
+                        <button onClick={() => handleDeleteCertificate(cert._id)} style={{ ...iconBtnStyle, color: '#f87171' }} title="Delete Certificate">
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
         {/* TAB 7: MESSAGES INBOX */}
         {activeTab === 'messages' && (
           <div>
@@ -1552,6 +1662,7 @@ const AdminDashboard = () => {
           onSaveProject={handleSaveProject}
           onSaveExperience={handleSaveExperience}
           onSaveEducation={handleSaveEducation}
+          onSaveCertificate={handleSaveCertificate}
           onSaveWriting={handleSaveWriting}
           onSaveGallery={handleSaveGalleryItem}
         />
@@ -1627,7 +1738,7 @@ const StatCard = ({ title, value, icon }) => (
 );
 
 // Generic Modal Form Component
-const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onSaveExperience, onSaveEducation, onSaveWriting, onSaveGallery }) => {
+const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onSaveExperience, onSaveEducation, onSaveCertificate, onSaveWriting, onSaveGallery }) => {
   const [formData, setFormData] = useState(() => {
     if (initialData) {
       return {
@@ -1660,6 +1771,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
     if (type === 'project') onSaveProject(formData);
     if (type === 'experience') onSaveExperience(formData);
     if (type === 'education') onSaveEducation(formData);
+    if (type === 'certificate') onSaveCertificate(formData);
     if (type === 'writing') onSaveWriting(formData);
     if (type === 'gallery') onSaveGallery(formData);
   };
@@ -2071,6 +2183,98 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Details / Honors</label>
                 <textarea value={formData.details || ''} onChange={(e) => setFormData({ ...formData, details: e.target.value })} className="editorial-input" rows={2} />
+              </div>
+            </>
+          )}
+
+          {type === 'certificate' && (
+            <>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Certificate Name *</label>
+                <input type="text" value={formData.name || ''} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="editorial-input" placeholder="e.g. Principles of Generative AI" required />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Organization / Issuer *</label>
+                <input type="text" value={formData.organization || ''} onChange={(e) => setFormData({ ...formData, organization: e.target.value })} className="editorial-input" placeholder="e.g. Infosys, GeeksforGeeks, Coursera" required />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Month and Year *</label>
+                <input type="text" value={formData.issueDate || ''} onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })} className="editorial-input" placeholder="e.g. May 2025" required />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Description (Optional)</label>
+                <textarea value={formData.description || ''} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="editorial-input" rows={3} placeholder="Summary of skills or topics covered..." />
+              </div>
+
+              {/* Optional Certificate Link */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Credential URL / Link (Optional)</label>
+                <input type="text" value={formData.link || ''} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className="editorial-input" placeholder="https://..." />
+              </div>
+
+              {/* Optional Upload Certificate File */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <FileText size={14} /> Upload Certificate File (Optional)
+                </label>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '8px',
+                  padding: '10px 14px'
+                }}>
+                  <input
+                    type="file"
+                    accept=".pdf,image/*"
+                    id="modal-cert-file-input"
+                    style={{ display: 'none' }}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      if (file.size > 10 * 1024 * 1024) {
+                        alert('File size exceeds 10MB.');
+                        return;
+                      }
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setFormData({ ...formData, file: reader.result });
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => document.getElementById('modal-cert-file-input')?.click()}
+                    style={{
+                      background: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '6px',
+                      color: 'var(--text-primary)',
+                      padding: '6px 12px',
+                      fontSize: '0.78rem',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <Upload size={13} /> {formData.file ? 'Change Uploaded File' : 'Upload File'}
+                  </button>
+                  {formData.file && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, file: '' })}
+                      style={{ background: 'transparent', border: 'none', color: '#f87171', fontSize: '0.75rem', cursor: 'pointer' }}
+                    >
+                      Clear File
+                    </button>
+                  )}
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>PDF or Images (Max 10MB)</span>
+                </div>
               </div>
             </>
           )}

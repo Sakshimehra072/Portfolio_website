@@ -166,6 +166,32 @@ const initialPortfolioData = {
       details: "81% | Foundation in Computer Applications, Data Structures, and Software Development."
     }
   ],
+  certificates: [
+    {
+      name: "Principles of Generative AI Certification",
+      organization: "Infosys Springboard",
+      issueDate: "Jan 2026",
+      description: "Covered Large Language Models (LLMs), Prompt Engineering, and RAG AI Application Architectures.",
+      link: "#",
+      file: ""
+    },
+    {
+      name: "Artificial Intelligence Primer Certification",
+      organization: "Infosys Springboard",
+      issueDate: "Jan 2026",
+      description: "Foundational certification covering Machine Learning algorithms, neural networks, and data pipelines.",
+      link: "#",
+      file: ""
+    },
+    {
+      name: "React.js Developer Certification",
+      organization: "GeeksforGeeks",
+      issueDate: "May 2025",
+      description: "Comprehensive hands-on certification in React.js, Custom Hooks, Redux/Context state management, and modern UI design.",
+      link: "#",
+      file: ""
+    }
+  ],
   gallery: [
     { id: "g1", title: "Coding Setup 💻", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" },
     { id: "g2", title: "Building Web Apps 🚀", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80" },
@@ -187,7 +213,7 @@ async function seedDatabase(force = false) {
   const dotenv = require('dotenv');
   dotenv.config();
 
-  const { PersonalInfo, Skill, Project, Experience, Education, Writing, Gallery, Quote, Personal } = require('../models/Schemas');
+  const { PersonalInfo, Skill, Project, Experience, Education, Writing, Gallery, Quote, Personal, Certificate } = require('../models/Schemas');
 
   if (mongoose.connection.readyState !== 1) {
     const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/portfolio_db';
@@ -229,6 +255,13 @@ async function seedDatabase(force = false) {
     await Education.deleteMany({});
     await Education.insertMany(initialPortfolioData.education);
     console.log('✅ Education seeded');
+  }
+
+  const certCount = await Certificate.countDocuments();
+  if (force || certCount === 0) {
+    await Certificate.deleteMany({});
+    await Certificate.insertMany(initialPortfolioData.certificates);
+    console.log('✅ Certificates seeded');
   }
 
   const writingCount = await Writing.countDocuments();

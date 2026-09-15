@@ -41,6 +41,7 @@ app.use('/api/skills', require('./routes/skillRoutes'));
 app.use('/api/projects', require('./routes/projectRoutes'));
 app.use('/api/experience', require('./routes/experienceRoutes'));
 app.use('/api/education', require('./routes/educationRoutes'));
+app.use('/api/certificates', require('./routes/certificateRoutes'));
 app.use('/api/messages', require('./routes/messageRoutes'));
 app.use('/api/writing', require('./routes/writingRoutes'));
 app.use('/api/gallery', require('./routes/galleryRoutes'));

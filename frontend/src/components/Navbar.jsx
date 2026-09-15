@@ -33,6 +33,7 @@ const Navbar = ({ onOpenSearch }) => {
               <a href="#skills" style={navLinkStyle}>Skills</a>
               <a href="#experience" style={navLinkStyle}>Experience</a>
               <a href="#education" style={navLinkStyle}>Education</a>
+              <a href="#certificates" style={navLinkStyle}>Certificates</a>
               <a href="#writing" style={navLinkStyle}>Blog</a>
               <a href="#contact" style={navLinkStyle}>Contact</a>
             </>

@@ -97,6 +97,15 @@ const PersonalSchema = new mongoose.Schema({
   link: { type: String }
 }, { timestamps: true });
 
+const CertificateSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  organization: { type: String, required: true },
+  issueDate: { type: String, required: true },
+  description: { type: String },
+  link: { type: String },
+  file: { type: String }
+}, { timestamps: true });
+
 module.exports = {
   PersonalInfo: mongoose.model('PersonalInfo', PersonalInfoSchema),
   Skill: mongoose.model('Skill', SkillSchema),
@@ -107,6 +116,7 @@ module.exports = {
   Writing: mongoose.model('Writing', WritingSchema),
   Gallery: mongoose.model('Gallery', GallerySchema),
   Quote: mongoose.model('Quote', QuoteSchema),
-  Personal: mongoose.model('Personal', PersonalSchema)
+  Personal: mongoose.model('Personal', PersonalSchema),
+  Certificate: mongoose.model('Certificate', CertificateSchema)
 };
 

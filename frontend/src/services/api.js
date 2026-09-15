@@ -57,6 +57,12 @@ export const portfolioAPI = {
   updateEducation: (id, data) => API.put(`/education/${id}`, data),
   deleteEducation: (id) => API.delete(`/education/${id}`),
 
+  // Certificates CRUD
+  getCertificates: () => API.get('/certificates'),
+  createCertificate: (data) => API.post('/certificates', data),
+  updateCertificate: (id, data) => API.put(`/certificates/${id}`, data),
+  deleteCertificate: (id) => API.delete(`/certificates/${id}`),
+
   // Writing CRUD
   getWriting: () => API.get('/writing'),
   createWriting: (data) => API.post('/writing', data),

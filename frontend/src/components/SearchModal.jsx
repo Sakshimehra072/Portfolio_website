@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, FolderGit2, Briefcase, FileText, ArrowRight } from 'lucide-react';
+import { Search, X, FolderGit2, Briefcase, FileText, ArrowRight, Award } from 'lucide-react';
 
 const SearchModal = ({ isOpen, onClose, data }) => {
   const [query, setQuery] = useState('');
@@ -28,6 +28,7 @@ const SearchModal = ({ isOpen, onClose, data }) => {
 
   const projects = data?.projects || [];
   const experiences = data?.experiences || [];
+  const certificates = data?.certificates || [];
   const writing = data?.writing || [];
 
   const filteredProjects = projects.filter(p =>
@@ -41,12 +42,18 @@ const SearchModal = ({ isOpen, onClose, data }) => {
     e.role?.toLowerCase().includes(query.toLowerCase())
   );
 
+  const filteredCertificates = certificates.filter(c =>
+    c.name?.toLowerCase().includes(query.toLowerCase()) ||
+    c.organization?.toLowerCase().includes(query.toLowerCase()) ||
+    c.description?.toLowerCase().includes(query.toLowerCase())
+  );
+
   const filteredWriting = writing.filter(w =>
     w.title?.toLowerCase().includes(query.toLowerCase()) ||
     w.excerpt?.toLowerCase().includes(query.toLowerCase())
   );
 
-  const totalResults = filteredProjects.length + filteredExperiences.length + filteredWriting.length;
+  const totalResults = filteredProjects.length + filteredExperiences.length + filteredCertificates.length + filteredWriting.length;
 
   return (
     <div style={{
@@ -168,6 +175,39 @@ const SearchModal = ({ isOpen, onClose, data }) => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <Briefcase size={15} color="var(--text-secondary)" />
                     <span>{e.company} — <span style={{ color: 'var(--text-secondary)' }}>{e.role}</span></span>
+                  </div>
+                  <ArrowRight size={14} color="var(--text-muted)" />
+                </a>
+              ))}
+            </div>
+          )}
+
+          {/* Certificates Results */}
+          {filteredCertificates.length > 0 && (
+            <div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+                Certificates ({filteredCertificates.length})
+              </span>
+              {filteredCertificates.map(c => (
+                <a
+                  key={c._id || c.name}
+                  href="#certificates"
+                  onClick={onClose}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    color: 'var(--text-primary)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'background 0.15s ease'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <Award size={15} color="var(--text-secondary)" />
+                    <span>{c.name} — <span style={{ color: 'var(--text-secondary)' }}>{c.organization}</span></span>
                   </div>
                   <ArrowRight size={14} color="var(--text-muted)" />
                 </a>

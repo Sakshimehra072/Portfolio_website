@@ -318,5 +318,34 @@
     "text": "Building user-friendly applications and continuously improving my technical skills.",
     "author": "Sakshi"
   },
-  "messages": []
+  "messages": [],
+  "certificates": [
+    {
+      "_id": "cert_1",
+      "name": "Principles of Generative AI Certification",
+      "organization": "Infosys Springboard",
+      "issueDate": "Jan 2026",
+      "description": "Covered Large Language Models (LLMs), Prompt Engineering, and RAG AI Application Architectures.",
+      "link": "#",
+      "file": ""
+    },
+    {
+      "_id": "cert_2",
+      "name": "Artificial Intelligence Primer Certification",
+      "organization": "Infosys Springboard",
+      "issueDate": "Jan 2026",
+      "description": "Foundational certification covering Machine Learning algorithms, neural networks, and data pipelines.",
+      "link": "#",
+      "file": ""
+    },
+    {
+      "_id": "cert_3",
+      "name": "React.js Developer Certification",
+      "organization": "GeeksforGeeks",
+      "issueDate": "May 2025",
+      "description": "Comprehensive hands-on certification in React.js, Custom Hooks, Redux/Context state management, and modern UI design.",
+      "link": "#",
+      "file": ""
+    }
+  ]
 }

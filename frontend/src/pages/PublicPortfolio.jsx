@@ -5,6 +5,7 @@ import Skills from '../components/Skills';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Education from '../components/Education';
+import Certificates from '../components/Certificates';
 import Writing from '../components/Writing';
 import Gallery from '../components/Gallery';
 import Quote from '../components/Quote';
@@ -39,6 +40,7 @@ const PublicPortfolio = () => {
     skills: [],
     projects: [],
     education: [],
+    certificates: [],
     writing: [],
     gallery: [],
     personal: [],
@@ -59,6 +61,7 @@ const PublicPortfolio = () => {
             skills: res.data.skills?.length > 0 ? res.data.skills : [],
             projects: res.data.projects?.length > 0 ? res.data.projects : [],
             education: res.data.education?.length > 0 ? res.data.education : [],
+            certificates: res.data.certificates?.length > 0 ? res.data.certificates : [],
             writing: res.data.writing || [],
             gallery: res.data.gallery || [],
             personal: res.data.personal || [],
@@ -115,6 +118,7 @@ const PublicPortfolio = () => {
         <Experience experiences={data.experiences} />
         <Projects projects={data.projects} />
         <Education education={data.education} />
+        <Certificates certificates={data.certificates} />
         <Writing writing={data.writing} />
         <Gallery gallery={data.gallery} />
         <Quote quote={data.quote} />

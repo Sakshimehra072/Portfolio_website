@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/auth');
 const { isUsingFallback, getLocalDb, saveLocalDb } = require('../config/db');
-const { PersonalInfo, Skill, Project, Experience, Education, Writing, Gallery, Quote, Personal } = require('../models/Schemas');
+const { PersonalInfo, Skill, Project, Experience, Education, Writing, Gallery, Quote, Personal, Certificate } = require('../models/Schemas');
 
 // GET /api/portfolio - Full Portfolio Data
 router.get('/', async (req, res) => {
@@ -19,7 +19,8 @@ router.get('/', async (req, res) => {
         gallery: db.gallery || [],
         personal: db.personal || [],
         quote: db.quote || {},
-        education: db.education
+        education: db.education,
+        certificates: db.certificates || []
       });
     }
 
@@ -28,6 +29,7 @@ router.get('/', async (req, res) => {
     let projects = await Project.find().sort({ createdAt: -1 });
     let experiences = await Experience.find().sort({ createdAt: -1 });
     let education = await Education.find().sort({ createdAt: -1 });
+    let certificates = await Certificate.find().sort({ createdAt: -1 });
     let writing = await Writing.find().sort({ createdAt: -1 });
     let gallery = await Gallery.find().sort({ createdAt: -1 });
     let personal = await Personal.find().sort({ createdAt: -1 });
@@ -42,7 +44,8 @@ router.get('/', async (req, res) => {
       gallery: (gallery && gallery.length > 0) ? gallery : (db.gallery || []),
       personal: (personal && personal.length > 0) ? personal : (db.personal || []),
       quote: quoteDoc || db.quote || {},
-      education: (education && education.length > 0) ? education : db.education
+      education: (education && education.length > 0) ? education : db.education,
+      certificates: (certificates && certificates.length > 0) ? certificates : (db.certificates || [])
     });
   } catch (error) {
     const db = getLocalDb();
@@ -55,7 +58,8 @@ router.get('/', async (req, res) => {
       gallery: db.gallery || [],
       personal: db.personal || [],
       quote: db.quote || {},
-      education: db.education
+      education: db.education,
+      certificates: db.certificates || []
     });
   }
 });
