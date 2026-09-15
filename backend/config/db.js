@@ -27,11 +27,20 @@ function saveLocalDb(data) {
   fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
 }
 
+const dns = require('dns');
+
+// Configure fallback DNS servers (Google & Cloudflare) for MongoDB Atlas SRV resolution
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+} catch (e) {
+  // Ignore if unsupported in environment
+}
+
 const connectDB = async () => {
   const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/portfolio_db';
   try {
     mongoose.set('strictQuery', false);
-    await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 2000 });
+    await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 10000 });
     console.log('✅ Connected to MongoDB via Mongoose');
     useFallbackDb = false;
 
