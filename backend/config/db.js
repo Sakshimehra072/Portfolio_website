@@ -6,6 +6,7 @@ const { initialPortfolioData } = require('../data/seedData');
 const LOCAL_DB_PATH = path.join(__dirname, '../data/local_db.json');
 
 let useFallbackDb = false;
+let mongoError = null;
 
 function initLocalDb() {
   if (!fs.existsSync(LOCAL_DB_PATH)) {
@@ -43,22 +44,26 @@ const connectDB = async () => {
     await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 10000 });
     console.log('✅ Connected to MongoDB via Mongoose');
     useFallbackDb = false;
+    mongoError = null;
 
     // Automatically seed MongoDB if empty
     const { seedDatabase } = require('../data/seedData');
     await seedDatabase();
   } catch (error) {
     console.log(`⚠️ MongoDB connection failed (${error.message}). Switching to local JSON storage engine.`);
+    mongoError = error.message;
     initLocalDb();
     useFallbackDb = true;
   }
 };
 
 const isUsingFallback = () => useFallbackDb;
+const getMongoError = () => mongoError;
 
 module.exports = {
   connectDB,
   isUsingFallback,
+  getMongoError,
   getLocalDb,
   saveLocalDb
 };

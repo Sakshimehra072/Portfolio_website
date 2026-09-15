@@ -48,10 +48,12 @@ app.use('/api/gallery', require('./routes/galleryRoutes'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  const { isUsingFallback } = require('./config/db');
+  const { isUsingFallback, getMongoError } = require('./config/db');
   res.json({
     status: 'ok',
     database: isUsingFallback() ? 'local_json_fallback' : 'mongodb',
+    hasMongoUriEnv: Boolean(process.env.MONGODB_URI),
+    mongoError: getMongoError(),
     timestamp: new Date().toISOString()
   });
 });
