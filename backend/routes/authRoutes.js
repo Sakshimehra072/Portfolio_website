@@ -16,8 +16,8 @@ router.post('/login', (req, res) => {
 
   const u = (username || '').trim();
   const p = (password || '').trim();
-  const validUser = (process.env.ADMIN_USER || '').trim();
-  const validPass = (process.env.ADMIN_PASS || '').trim();
+  const validUser = (process.env.ADMIN_USER || 'Sakshi270').trim();
+  const validPass = (process.env.ADMIN_PASS || 'Sakshi@p270').trim();
 
   const isMatch = validUser && validPass && u === validUser && p === validPass;
 
