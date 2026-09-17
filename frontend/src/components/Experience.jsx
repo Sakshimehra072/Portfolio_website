@@ -53,31 +53,43 @@ const Experience = ({ experiences = [] }) => {
               }}
             >
               {/* Header Row */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                gap: '8px',
-                marginBottom: '12px'
-              }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '12px' }}>
+                {/* Row 1: Company Name & Duration */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
                     <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                       {exp.company}
                     </h3>
                     {(exp.current || exp.duration?.toLowerCase().includes('current')) && (
-                      <span className="green-dot" style={{ width: '6px', height: '6px' }} />
+                      <span className="green-dot" style={{ width: '6px', height: '6px', flexShrink: 0 }} />
                     )}
                   </div>
-                  <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                    {exp.role}
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', flexShrink: 0, textAlign: 'right' }}>
+                    {exp.duration}
                   </span>
                 </div>
 
-                <div style={{ textAlign: 'right', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                  <div>{exp.duration}</div>
-                  <div>{exp.location}</div>
+                {/* Row 2: Role on Left & Location on Right in Same Line */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  fontSize: '0.82rem'
+                }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>
+                    {exp.role}
+                  </span>
+                  {exp.location && (
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem', flexShrink: 0, textAlign: 'right' }}>
+                      {exp.location}
+                    </span>
+                  )}
                 </div>
               </div>
 
