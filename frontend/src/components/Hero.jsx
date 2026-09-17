@@ -120,11 +120,14 @@ const Hero = ({ personalInfo }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                maxWidth: '100%',
+                wordBreak: 'break-word',
+                overflowWrap: 'anywhere'
               }}
             >
-              <span>{email}</span>
-              <ArrowRight size={12} color="var(--text-secondary)" />
+              <span className="break-word-safe">{email}</span>
+              <ArrowRight size={12} color="var(--text-secondary)" style={{ flexShrink: 0 }} />
             </a>
           </div>
         </div>

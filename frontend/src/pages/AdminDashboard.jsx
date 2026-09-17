@@ -19,6 +19,7 @@ import {
   Github,
   Globe,
   X,
+  Menu,
   Upload,
   Image as ImageIcon,
   Sun,
@@ -49,8 +50,23 @@ const SKILL_ICON_PRESETS = [
   { name: 'Figma', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
 ];
 
+const TAB_LABELS = {
+  overview: 'Overview',
+  info: 'Personal Info',
+  skills: 'Skills',
+  experience: 'Experience',
+  projects: 'Projects',
+  education: 'Education',
+  certificates: 'Certificates',
+  writing: 'Writing / Blogs',
+  gallery: 'Photo Gallery',
+  quote: 'Quote',
+  messages: 'Messages'
+};
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [portfolioData, setPortfolioData] = useState({
     personalInfo: {},
     skills: [],
@@ -405,7 +421,99 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-layout" style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      {/* Sidebar Navigation */}
+      {/* Mobile Top Header Bar with Hamburger Menu Button */}
+      <header className="admin-mobile-topbar">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h2 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>Admin Hub</h2>
+          <span style={{ fontSize: '0.7rem', background: 'var(--bg-tertiary)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--border-color)', fontWeight: 500 }}>
+            {TAB_LABELS[activeTab] || activeTab}
+          </span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            onClick={toggleTheme}
+            style={{
+              background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '6px',
+              color: 'var(--text-secondary)',
+              padding: '6px 10px',
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer'
+            }}
+            title="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '6px',
+              color: 'var(--text-primary)',
+              padding: '6px 10px',
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer'
+            }}
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Backdrop Overlay */}
+      {isMobileMenuOpen && (
+        <div className="admin-mobile-backdrop" onClick={() => setIsMobileMenuOpen(false)} />
+      )}
+
+      {/* Mobile Slide-down Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="admin-mobile-drawer">
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <SidebarTab icon={<LayoutDashboard size={16} />} label="Overview" active={activeTab === 'overview'} onClick={() => { setActiveTab('overview'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<User size={16} />} label="Personal Info" active={activeTab === 'info'} onClick={() => { setActiveTab('info'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<Cpu size={16} />} label="Skills" count={skills.length} active={activeTab === 'skills'} onClick={() => { setActiveTab('skills'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<Briefcase size={16} />} label="Experience" count={experiences.length} active={activeTab === 'experience'} onClick={() => { setActiveTab('experience'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<FolderGit2 size={16} />} label="Projects" count={projects.length} active={activeTab === 'projects'} onClick={() => { setActiveTab('projects'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<GraduationCap size={16} />} label="Education" count={education.length} active={activeTab === 'education'} onClick={() => { setActiveTab('education'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<Award size={16} />} label="Certificates" count={certificates.length} active={activeTab === 'certificates'} onClick={() => { setActiveTab('certificates'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<FileText size={16} />} label="Writing / Blogs" count={writing.length} active={activeTab === 'writing'} onClick={() => { setActiveTab('writing'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<ImageIcon size={16} />} label="Photo Gallery" count={gallery.length} active={activeTab === 'gallery'} onClick={() => { setActiveTab('gallery'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<QuoteIcon size={16} />} label="Quote" active={activeTab === 'quote'} onClick={() => { setActiveTab('quote'); setIsMobileMenuOpen(false); }} />
+            <SidebarTab icon={<Mail size={16} />} label="Messages" count={messages.length} active={activeTab === 'messages'} onClick={() => { setActiveTab('messages'); setIsMobileMenuOpen(false); }} />
+          </nav>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '12px', borderTop: '1px solid var(--border-color)' }}>
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 8px', borderRadius: '6px' }}>
+              <Globe size={14} /> Public Website
+            </Link>
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); handleLogout(); }}
+              style={{
+                background: 'transparent',
+                border: '1px solid var(--border-color)',
+                borderRadius: '6px',
+                color: '#f87171',
+                padding: '8px 12px',
+                fontSize: '0.82rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px'
+              }}
+            >
+              <LogOut size={14} /> Sign Out
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Desktop Sidebar Navigation */}
       <aside className="admin-sidebar" style={{
         background: 'var(--bg-secondary)',
         display: 'flex',
@@ -419,7 +527,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Tab Items */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1, overflowY: 'auto' }}>
+        <nav className="admin-nav-tabs" style={{ flexGrow: 1 }}>
           <SidebarTab icon={<LayoutDashboard size={16} />} label="Overview" active={activeTab === 'overview'} onClick={() => setActiveTab('overview')} />
           <SidebarTab icon={<User size={16} />} label="Personal Info" active={activeTab === 'info'} onClick={() => setActiveTab('info')} />
           <SidebarTab icon={<Cpu size={16} />} label="Skills" count={skills.length} active={activeTab === 'skills'} onClick={() => setActiveTab('skills')} />
@@ -566,12 +674,7 @@ const AdminDashboard = () => {
               </p>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(320px, 1fr) 340px',
-              gap: '24px',
-              alignItems: 'start'
-            }}>
+            <div className="admin-info-grid">
               {/* Left Column: Form Controls */}
               <form onSubmit={handleSaveInfo} style={{
                 background: 'var(--bg-secondary)',
@@ -586,7 +689,7 @@ const AdminDashboard = () => {
                   Identity & Bio
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="admin-form-row-2col">
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500 }}>Full Name *</label>
                     <input
@@ -636,7 +739,7 @@ const AdminDashboard = () => {
                   Media & Assets (Image Upload)
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div className="admin-form-row-2col">
                   {/* Avatar Upload Control */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -794,7 +897,7 @@ const AdminDashboard = () => {
                   Contact Information & Location
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div className="admin-form-row-2col">
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500 }}>Email Address *</label>
                     <input
@@ -901,7 +1004,7 @@ const AdminDashboard = () => {
                   Social Links
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+                <div className="admin-form-row-3col">
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <label style={{ fontSize: '0.8rem', color: '#8A8A8A', fontWeight: 500 }}>GitHub</label>
                     <input
@@ -953,15 +1056,7 @@ const AdminDashboard = () => {
               </form>
 
               {/* Right Column: Live Portfolio Card Preview (Top Right Side) */}
-              <div style={{
-                position: 'sticky',
-                top: '20px',
-                background: '#0D0D0D',
-                border: '1px solid #1A1A1A',
-                borderRadius: '10px',
-                padding: '16px',
-                overflow: 'hidden'
-              }}>
+              <div className="admin-preview-card">
                 <span style={{ fontSize: '0.72rem', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 600, display: 'block', marginBottom: '12px' }}>
                   Live Portfolio Preview
                 </span>
@@ -1040,7 +1135,7 @@ const AdminDashboard = () => {
         {/* TAB 3: SKILLS */}
         {activeTab === 'skills' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#E5E5E5', marginBottom: '4px' }}>Manage Technical Skills</h1>
                 <p style={{ color: '#8A8A8A', fontSize: '0.85rem' }}>Add, edit, or delete technology skill badges.</p>
@@ -1112,7 +1207,7 @@ const AdminDashboard = () => {
         {/* TAB 4: PROJECTS */}
         {activeTab === 'projects' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#E5E5E5', marginBottom: '4px' }}>Manage Projects</h1>
                 <p style={{ color: '#8A8A8A', fontSize: '0.85rem' }}>Showcase and update your portfolio project items.</p>
@@ -1165,7 +1260,7 @@ const AdminDashboard = () => {
         {/* TAB 5: EXPERIENCE */}
         {activeTab === 'experience' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#E5E5E5', marginBottom: '4px' }}>Manage Work Experience</h1>
                 <p style={{ color: '#8A8A8A', fontSize: '0.85rem' }}>Update your career history and job roles.</p>
@@ -1207,7 +1302,7 @@ const AdminDashboard = () => {
         {/* TAB 6: EDUCATION */}
         {activeTab === 'education' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#E5E5E5', marginBottom: '4px' }}>Manage Education</h1>
                 <p style={{ color: '#8A8A8A', fontSize: '0.85rem' }}>Academic degrees, institutions, and certifications.</p>
@@ -1249,7 +1344,7 @@ const AdminDashboard = () => {
         {/* TAB: CERTIFICATES */}
         {activeTab === 'certificates' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>Manage Certificates</h1>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Add, edit, or remove certificates, awards, and credentials.</p>
@@ -1378,7 +1473,7 @@ const AdminDashboard = () => {
         {/* TAB 8: WRITING / BLOGS */}
         {activeTab === 'writing' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>
                   Blogs & Writing Articles
@@ -1401,15 +1496,12 @@ const AdminDashboard = () => {
                 writing.map((article) => (
                   <div
                     key={article._id || article.title}
+                    className="admin-writing-card"
                     style={{
                       background: 'var(--bg-secondary)',
                       border: '1px solid var(--border-color)',
                       borderRadius: '8px',
-                      padding: '16px 20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '16px'
+                      padding: '16px 20px'
                     }}
                   >
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -1450,7 +1542,7 @@ const AdminDashboard = () => {
         {/* TAB 9: PHOTO GALLERY */}
         {activeTab === 'gallery' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="admin-header-flex">
               <div>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>
                   Manage Photo Gallery
@@ -1532,12 +1624,7 @@ const AdminDashboard = () => {
               </p>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '24px',
-              alignItems: 'start'
-            }}>
+            <div className="admin-quote-grid">
               {/* Left Column: Edit Form */}
               <div style={{
                 background: 'var(--bg-secondary)',
@@ -1687,10 +1774,13 @@ const SidebarTab = ({ icon, label, count, active, onClick }) => (
       cursor: 'pointer',
       fontSize: '0.82rem',
       fontWeight: active ? 600 : 400,
-      transition: 'all 0.15s ease'
+      transition: 'all 0.15s ease',
+      whiteSpace: 'nowrap',
+      flexShrink: 0,
+      gap: '8px'
     }}
   >
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
       {icon}
       <span>{label}</span>
     </div>
@@ -1786,19 +1876,9 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '20px'
+      padding: '16px'
     }} onClick={onClose}>
-      <div style={{
-        width: '100%',
-        maxWidth: '520px',
-        maxHeight: '85vh',
-        overflowY: 'auto',
-        background: 'var(--bg-secondary)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: '10px',
-        padding: '24px',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
-      }} onClick={(e) => e.stopPropagation()}>
+      <div className="modal-dialog-card" onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
             {initialData ? 'Edit' : 'Add New'} {type.toUpperCase()}

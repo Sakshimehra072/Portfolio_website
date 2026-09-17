@@ -163,15 +163,7 @@ const Writing = ({ writing = [] }) => {
       {activeArticle && (
         <div
           id="writing-detail-container"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 5000,
-            background: 'var(--bg-primary)',
-            color: 'var(--text-primary)',
-            overflowY: 'auto',
-            padding: '40px 20px 80px 20px'
-          }}
+          className="detail-modal-container"
         >
           <div style={{ maxWidth: '680px', margin: '0 auto' }}>
             {/* Top Back Navigation */}
@@ -186,7 +178,7 @@ const Writing = ({ writing = [] }) => {
                 alignItems: 'center',
                 gap: '6px',
                 fontSize: '0.82rem',
-                marginBottom: '32px',
+                marginBottom: '24px',
                 padding: 0
               }}
             >
@@ -195,14 +187,7 @@ const Writing = ({ writing = [] }) => {
             </button>
 
             {/* Article Title */}
-            <h1 style={{
-              fontSize: '2.4rem',
-              fontWeight: 400,
-              fontFamily: 'Georgia, serif',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em',
-              marginBottom: '12px'
-            }}>
+            <h1 className="detail-modal-title">
               {activeArticle.title}
             </h1>
 

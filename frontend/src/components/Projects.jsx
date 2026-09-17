@@ -75,30 +75,13 @@ const Projects = ({ projects = [] }) => {
             return (
               <div
                 key={project._id || project.title}
+                className="project-row-item"
                 onClick={() => setActiveProjectModal(project)}
                 onMouseEnter={() => setHoveredId(project._id || project.title)}
                 onMouseLeave={() => setHoveredId(null)}
-                style={{
-                  display: 'flex',
-                  gap: '18px',
-                  alignItems: 'flex-start',
-                  padding: '12px 0',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  borderBottom: '1px solid var(--border-color)'
-                }}
               >
                 {/* Left Image Thumbnail */}
-                <div style={{
-                  width: '130px',
-                  height: '82px',
-                  borderRadius: '6px',
-                  overflow: 'hidden',
-                  flexShrink: 0,
-                  background: 'var(--bg-tertiary)'
-                }}>
+                <div className="project-row-thumb">
                   <img
                     src={project.image || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop&q=80'}
                     alt={project.title}
@@ -198,15 +181,7 @@ const Projects = ({ projects = [] }) => {
       {activeProjectModal && (
         <div
           id="project-detail-container"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 5000,
-            background: 'var(--bg-primary)',
-            color: 'var(--text-primary)',
-            overflowY: 'auto',
-            padding: '40px 20px 80px 20px'
-          }}
+          className="detail-modal-container"
         >
           <div style={{ maxWidth: '680px', margin: '0 auto' }}>
             {/* Top Back Navigation Link */}
@@ -221,7 +196,7 @@ const Projects = ({ projects = [] }) => {
                 alignItems: 'center',
                 gap: '6px',
                 fontSize: '0.82rem',
-                marginBottom: '32px',
+                marginBottom: '24px',
                 padding: 0
               }}
             >
@@ -230,14 +205,7 @@ const Projects = ({ projects = [] }) => {
             </button>
 
             {/* Project Title */}
-            <h1 style={{
-              fontSize: '2.4rem',
-              fontWeight: 400,
-              fontFamily: 'Georgia, serif',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em',
-              marginBottom: '12px'
-            }}>
+            <h1 className="detail-modal-title">
               {activeProjectModal.title}
             </h1>
 

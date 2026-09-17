@@ -25,12 +25,8 @@ const Gallery = ({ gallery = [] }) => {
         <h2 className="section-title">Gallery</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
-          {/* Top Row: 3 Images */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: photos.length >= 3 ? 'repeat(3, 1fr)' : `repeat(${Math.max(photos.length, 1)}, 1fr)`,
-            gap: '10px'
-          }}>
+          {/* Top Row: Responsive Photos Grid */}
+          <div className="gallery-top-grid">
             {topRow.map((photo, index) => (
               <div
                 key={photo._id || photo.id || index}

@@ -65,9 +65,10 @@ const SearchModal = ({ isOpen, onClose, data }) => {
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
-      paddingTop: '100px',
-      paddingLeft: '16px',
-      paddingRight: '16px'
+      paddingTop: 'min(100px, 8vh)',
+      paddingBottom: '20px',
+      paddingLeft: '14px',
+      paddingRight: '14px'
     }} onClick={onClose}>
       <div style={{
         width: '100%',
