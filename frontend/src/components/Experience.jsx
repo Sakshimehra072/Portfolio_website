@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderFormattedText } from '../utils/formatText';
 
 const defaultTechStack = [
   'C++', 'JavaScript', 'TypeScript', 'React.js', 'Next.js',
@@ -97,7 +98,7 @@ const Experience = ({ experiences = [] }) => {
                   }}>
                     {exp.highlights.map((h, i) => (
                       <li key={i} style={{ paddingLeft: '2px' }}>
-                        {h}
+                        {renderFormattedText(h)}
                       </li>
                     ))}
                   </ul>

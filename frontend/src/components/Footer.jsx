@@ -33,8 +33,6 @@ const Footer = ({ name = "Sakshi" }) => {
               <a href="#" style={footerLinkStyle}>Resume</a>
               <a href="#writing" style={footerLinkStyle}>Writing</a>
               <a href="#gallery" style={footerLinkStyle}>Gallery</a>
-              <a href="#" style={footerLinkStyle}>100-List</a>
-              <a href="#" style={footerLinkStyle}>Movies</a>
             </div>
           </div>
 
@@ -63,25 +61,16 @@ const Footer = ({ name = "Sakshi" }) => {
           </div>
         </div>
 
-        {/* Bottom Utility Links & Copyright */}
+        {/* Bottom Copyright */}
         <div style={{
           paddingTop: '20px',
           borderTop: '1px solid var(--border-subtle)',
           display: 'flex',
-          flexWrap: 'wrap',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
+          justifyContent: 'center',
           fontSize: '0.75rem',
           color: 'var(--text-muted)'
         }}>
-          <div style={{ display: 'flex', gap: '14px' }}>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Sitemap</a>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>RSS</a>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>AI Summary</a>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Humans</a>
-          </div>
-
           <span>© 2026 {name}</span>
         </div>
       </div>

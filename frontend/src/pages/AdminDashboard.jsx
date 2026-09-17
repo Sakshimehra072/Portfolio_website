@@ -697,7 +697,7 @@ const AdminDashboard = () => {
                       value={personalInfo.name || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, name: e.target.value } })}
                       className="editorial-input"
-                      placeholder="e.g. Sakshi"
+                      placeholder="Enter full name"
                       required
                     />
                   </div>
@@ -708,7 +708,7 @@ const AdminDashboard = () => {
                       value={personalInfo.subtitle || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, subtitle: e.target.value } })}
                       className="editorial-input"
-                      placeholder="Engineer · Developer · 988id of Code"
+                      placeholder="Enter subtitle or title"
                     />
                   </div>
                 </div>
@@ -719,8 +719,8 @@ const AdminDashboard = () => {
                     value={personalInfo.bio1 || personalInfo.bio || ''}
                     onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, bio1: e.target.value, bio: e.target.value } })}
                     className="editorial-input"
-                    rows={3}
-                    placeholder="I think in systems, not just syntax..."
+                    rows={5}
+                    placeholder="Enter primary bio or tagline..."
                   />
                 </div>
 
@@ -730,8 +730,8 @@ const AdminDashboard = () => {
                     value={personalInfo.bio2 || ''}
                     onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, bio2: e.target.value } })}
                     className="editorial-input"
-                    rows={2}
-                    placeholder="Dedicated to building resilient full-stack architectures..."
+                    rows={4}
+                    placeholder="Enter secondary bio paragraph..."
                   />
                 </div>
 
@@ -905,7 +905,7 @@ const AdminDashboard = () => {
                       value={personalInfo.email || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, email: e.target.value } })}
                       className="editorial-input"
-                      placeholder="e.g. sakshi.dev@example.com"
+                      placeholder="Enter email address"
                       required
                     />
                   </div>
@@ -916,7 +916,7 @@ const AdminDashboard = () => {
                       value={personalInfo.phone || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, phone: e.target.value } })}
                       className="editorial-input"
-                      placeholder="e.g. +91 98765 43210"
+                      placeholder="Enter phone number"
                     />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -926,7 +926,7 @@ const AdminDashboard = () => {
                       value={personalInfo.location || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, location: e.target.value } })}
                       className="editorial-input"
-                      placeholder="Greater Noida, India"
+                      placeholder="Enter location"
                     />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -936,7 +936,7 @@ const AdminDashboard = () => {
                       value={personalInfo.handle || ''}
                       onChange={(e) => setPortfolioData({ ...portfolioData, personalInfo: { ...personalInfo, handle: e.target.value } })}
                       className="editorial-input"
-                      placeholder="@sakshi"
+                      placeholder="Enter handle or username"
                     />
                   </div>
                 </div>
@@ -1648,8 +1648,8 @@ const AdminDashboard = () => {
                       quote: { ...portfolioData.quote, text: e.target.value }
                     })}
                     className="editorial-input"
-                    rows={4}
-                    placeholder="e.g. What we do in life echoes in eternity."
+                    rows={6}
+                    placeholder="Enter quote text..."
                     required
                   />
                 </div>
@@ -1664,7 +1664,7 @@ const AdminDashboard = () => {
                       quote: { ...portfolioData.quote, author: e.target.value }
                     })}
                     className="editorial-input"
-                    placeholder="e.g. Maximus, Gladiator"
+                    placeholder="Enter quote author or speaker name"
                     required
                   />
                 </div>
@@ -1895,7 +1895,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Skill Name *</label>
                 <input
                   type="text"
-                  placeholder="e.g. React, Python, Docker"
+                  placeholder="Enter skill name (React, Node.js, Python...)"
                   value={formData.name || ''}
                   onChange={(e) => {
                     const nameVal = e.target.value;
@@ -1933,7 +1933,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                   type="number"
                   min="1"
                   max="100"
-                  placeholder="e.g. 85 (leave blank if optional)"
+                  placeholder="Enter proficiency score (1-100)"
                   value={formData.proficiency !== undefined && formData.proficiency !== null ? formData.proficiency : ''}
                   onChange={(e) => setFormData({ ...formData, proficiency: e.target.value })}
                   className="editorial-input"
@@ -2035,7 +2035,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
 
                     <input
                       type="url"
-                      placeholder="or paste logo image URL (e.g. https://...)"
+                      placeholder="Paste logo image URL"
                       value={formData.icon || ''}
                       onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
                       className="editorial-input"
@@ -2084,7 +2084,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Project Title *</label>
                 <input
                   type="text"
-                  placeholder="e.g. Veil Drop"
+                  placeholder="Enter project name"
                   value={formData.title || ''}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   className="editorial-input"
@@ -2098,8 +2098,8 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                   value={formData.shortDescription || ''}
                   onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
                   className="editorial-input"
-                  rows={2}
-                  placeholder="A concise 1-2 sentence overview shown on the website project card..."
+                  rows={4}
+                  placeholder="Enter short project overview shown on project card..."
                   required
                 />
               </div>
@@ -2110,8 +2110,8 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                   value={formData.description || ''}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="editorial-input"
-                  rows={3}
-                  placeholder="Full detailed description describing the project, problem solved, architecture, etc."
+                  rows={6}
+                  placeholder="Enter full detailed project description describing problem solved, architecture, technologies, etc."
                   required
                 />
               </div>
@@ -2122,8 +2122,8 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                   value={formData.keyFeatures || ''}
                   onChange={(e) => setFormData({ ...formData, keyFeatures: e.target.value })}
                   className="editorial-input"
-                  rows={3}
-                  placeholder="Enter each feature on a new line (e.g.):&#10;End-to-end WebRTC encryption&#10;Zero server file storage&#10;Live transfer progress bars"
+                  rows={5}
+                  placeholder="Enter each feature on a new line:&#10;End-to-end WebRTC encryption&#10;Zero server file storage&#10;Live transfer progress bars"
                 />
               </div>
               {/* Project Image Selection: Upload File & URL */}
@@ -2233,15 +2233,15 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Duration *</label>
-                <input type="text" value={formData.duration || ''} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} className="editorial-input" placeholder="2023 - Present" required />
+                <input type="text" value={formData.duration || ''} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} className="editorial-input" placeholder="Enter duration (2023 - Present)" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Location</label>
-                <input type="text" value={formData.location || ''} onChange={(e) => setFormData({ ...formData, location: e.target.value })} className="editorial-input" />
+                <input type="text" value={formData.location || ''} onChange={(e) => setFormData({ ...formData, location: e.target.value })} className="editorial-input" placeholder="Enter location" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Key Highlights (One per line)</label>
-                <textarea value={Array.isArray(formData.highlights) ? formData.highlights.join('\n') : (formData.highlights || '')} onChange={(e) => setFormData({ ...formData, highlights: e.target.value })} className="editorial-input" rows={3} />
+                <textarea value={Array.isArray(formData.highlights) ? formData.highlights.join('\n') : (formData.highlights || '')} onChange={(e) => setFormData({ ...formData, highlights: e.target.value })} className="editorial-input" rows={5} placeholder="Enter key job highlights (one per line)..." />
               </div>
             </>
           )}
@@ -2250,19 +2250,19 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
             <>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Degree / Qualification *</label>
-                <input type="text" value={formData.degree || ''} onChange={(e) => setFormData({ ...formData, degree: e.target.value })} className="editorial-input" required />
+                <input type="text" value={formData.degree || ''} onChange={(e) => setFormData({ ...formData, degree: e.target.value })} className="editorial-input" placeholder="Enter degree or qualification" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Institution / University *</label>
-                <input type="text" value={formData.institution || ''} onChange={(e) => setFormData({ ...formData, institution: e.target.value })} className="editorial-input" required />
+                <input type="text" value={formData.institution || ''} onChange={(e) => setFormData({ ...formData, institution: e.target.value })} className="editorial-input" placeholder="Enter institution or university name" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Duration *</label>
-                <input type="text" value={formData.duration || ''} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} className="editorial-input" placeholder="2017 - 2021" required />
+                <input type="text" value={formData.duration || ''} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} className="editorial-input" placeholder="Enter duration (2017 - 2021)" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Details / Honors</label>
-                <textarea value={formData.details || ''} onChange={(e) => setFormData({ ...formData, details: e.target.value })} className="editorial-input" rows={2} />
+                <textarea value={formData.details || ''} onChange={(e) => setFormData({ ...formData, details: e.target.value })} className="editorial-input" rows={4} placeholder="Enter education details or honors..." />
               </div>
             </>
           )}
@@ -2271,25 +2271,25 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
             <>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Certificate Name *</label>
-                <input type="text" value={formData.name || ''} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="editorial-input" placeholder="e.g. Principles of Generative AI" required />
+                <input type="text" value={formData.name || ''} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="editorial-input" placeholder="Enter certificate name" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Organization / Issuer *</label>
-                <input type="text" value={formData.organization || ''} onChange={(e) => setFormData({ ...formData, organization: e.target.value })} className="editorial-input" placeholder="e.g. Infosys, GeeksforGeeks, Coursera" required />
+                <input type="text" value={formData.organization || ''} onChange={(e) => setFormData({ ...formData, organization: e.target.value })} className="editorial-input" placeholder="Enter issuing organization" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Month and Year *</label>
-                <input type="text" value={formData.issueDate || ''} onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })} className="editorial-input" placeholder="e.g. May 2025" required />
+                <input type="text" value={formData.issueDate || ''} onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })} className="editorial-input" placeholder="Enter issue date (May 2025)" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Description (Optional)</label>
-                <textarea value={formData.description || ''} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="editorial-input" rows={3} placeholder="Summary of skills or topics covered..." />
+                <textarea value={formData.description || ''} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="editorial-input" rows={5} placeholder="Summary of skills or topics covered..." />
               </div>
 
               {/* Optional Certificate Link */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Credential URL / Link (Optional)</label>
-                <input type="text" value={formData.link || ''} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className="editorial-input" placeholder="https://..." />
+                <input type="text" value={formData.link || ''} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className="editorial-input" placeholder="Enter credential URL (https://...)" />
               </div>
 
               {/* Optional Upload Certificate File */}
@@ -2363,29 +2363,29 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
             <>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Article Title *</label>
-                <input type="text" value={formData.title || ''} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className="editorial-input" required />
+                <input type="text" value={formData.title || ''} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className="editorial-input" placeholder="Enter article title" required />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Short Excerpt *</label>
-                <textarea value={formData.excerpt || ''} onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })} className="editorial-input" rows={3} required />
+                <textarea value={formData.excerpt || ''} onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })} className="editorial-input" rows={5} placeholder="Enter short article excerpt..." required />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Publish Date</label>
-                  <input type="text" value={formData.date || ''} onChange={(e) => setFormData({ ...formData, date: e.target.value })} className="editorial-input" placeholder="e.g. AUG 14, 2026" />
+                  <input type="text" value={formData.date || ''} onChange={(e) => setFormData({ ...formData, date: e.target.value })} className="editorial-input" placeholder="Enter publish date (AUG 14, 2026)" />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Estimated Read Time</label>
-                  <input type="text" value={formData.readTime || ''} onChange={(e) => setFormData({ ...formData, readTime: e.target.value })} className="editorial-input" placeholder="e.g. 5 MIN READ" />
+                  <input type="text" value={formData.readTime || ''} onChange={(e) => setFormData({ ...formData, readTime: e.target.value })} className="editorial-input" placeholder="Enter estimated read time (5 MIN READ)" />
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>External Article Link / URL</label>
-                <input type="text" value={formData.link || ''} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className="editorial-input" placeholder="#" />
+                <input type="text" value={formData.link || ''} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className="editorial-input" placeholder="Enter article link URL" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Full Article Body (Optional)</label>
-                <textarea value={formData.content || ''} onChange={(e) => setFormData({ ...formData, content: e.target.value })} className="editorial-input" rows={4} placeholder="Detailed text or markdown body..." />
+                <textarea value={formData.content || ''} onChange={(e) => setFormData({ ...formData, content: e.target.value })} className="editorial-input" rows={8} placeholder="Enter detailed text or markdown body content..." />
               </div>
             </>
           )}
@@ -2396,7 +2396,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Photo Title / Caption *</label>
                 <input
                   type="text"
-                  placeholder="e.g. Workspace Setup 🔥"
+                  placeholder="Enter photo title or caption"
                   value={formData.title || ''}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   className="editorial-input"
@@ -2496,7 +2496,7 @@ const ModalForm = ({ type, initialData, onClose, onSaveSkill, onSaveProject, onS
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Additional Description / Subtitle (Optional)</label>
                 <input
                   type="text"
-                  placeholder="A small description of the moment..."
+                  placeholder="Enter photo description or caption"
                   value={formData.caption || ''}
                   onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
                   className="editorial-input"

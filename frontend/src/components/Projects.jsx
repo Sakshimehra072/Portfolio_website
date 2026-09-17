@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, ArrowLeft, ArrowUp, Github, ExternalLink } from 'lucide-react';
+import { renderFormattedText } from '../utils/formatText';
 
 const Projects = ({ projects = [] }) => {
   const [showAll, setShowAll] = useState(false);
@@ -137,7 +138,7 @@ const Projects = ({ projects = [] }) => {
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden'
                   }}>
-                    {project.shortDescription || (typeof project.description === 'string' ? project.description : '')}
+                    {renderFormattedText(project.shortDescription || (typeof project.description === 'string' ? project.description : ''))}
                   </p>
 
                   {/* Tech Tags */}
@@ -341,10 +342,10 @@ const Projects = ({ projects = [] }) => {
             }}>
               {typeof activeProjectModal.description === 'string' ? (
                 activeProjectModal.description.split('\n\n').map((paragraph, pIdx) => (
-                  <p key={pIdx}>{paragraph}</p>
+                  <p key={pIdx}>{renderFormattedText(paragraph)}</p>
                 ))
               ) : (
-                <p>{activeProjectModal.description}</p>
+                <p>{renderFormattedText(activeProjectModal.description)}</p>
               )}
             </div>
 
@@ -360,22 +361,31 @@ const Projects = ({ projects = [] }) => {
                   Key Features
                 </h3>
                 <ul style={{
-                  listStyleType: 'disc',
-                  paddingLeft: '20px',
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '12px'
                 }}>
                   {activeProjectModal.keyFeatures.map((feature, fIdx) => (
-                    <li
-                      key={fIdx}
-                      style={{
-                        fontSize: '0.88rem',
-                        color: 'var(--text-secondary)',
-                        lineHeight: '1.6'
-                      }}
-                    >
-                      {feature}
+                    <li key={fIdx} style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '12px',
+                      fontSize: '0.88rem',
+                      color: 'var(--text-secondary)',
+                      lineHeight: '1.6'
+                    }}>
+                      <span style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'var(--text-muted)',
+                        marginTop: '8px',
+                        flexShrink: 0
+                      }} />
+                      <span>{renderFormattedText(feature)}</span>
                     </li>
                   ))}
                 </ul>

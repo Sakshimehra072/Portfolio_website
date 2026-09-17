@@ -1,6 +1,8 @@
 import React from 'react';
 import { Github, Code, Linkedin, Mail, ArrowRight, FileText, ExternalLink } from 'lucide-react';
 
+import { renderFormattedText } from '../utils/formatText';
+
 const Hero = ({ personalInfo }) => {
   const {
     name = "Sakshi",
@@ -17,11 +19,11 @@ const Hero = ({ personalInfo }) => {
   return (
     <section className="editorial-section" style={{ paddingTop: '28px' }}>
       <div className="editorial-container">
-        {/* Cover / Banner Image with Small Overlapping Circular Avatar */}
-        <div style={{ position: 'relative', marginBottom: '24px' }}>
+        {/* Cover / Banner Image with Overlapping Circular Avatar */}
+        <div style={{ position: 'relative', marginBottom: '28px' }}>
           <div className="hero-banner-img" style={{
             width: '100%',
-            height: '160px',
+            height: '180px',
             borderRadius: '8px',
             overflow: 'hidden',
             position: 'relative',
@@ -39,18 +41,18 @@ const Hero = ({ personalInfo }) => {
             />
           </div>
 
-          {/* Small Circular Profile Avatar Overlapping Bottom Left */}
+          {/* Larger Circular Profile Avatar Overlapping Bottom Left */}
           <div className="hero-avatar-img" style={{
             position: 'absolute',
-            bottom: '-18px',
-            left: '10px',
-            width: '102px',
-            height: '102px',
+            bottom: '-24px',
+            left: '12px',
+            width: '132px',
+            height: '132px',
             borderRadius: '50%',
-            border: '2px solid var(--bg-primary)',
+            border: '3px solid var(--bg-primary)',
             overflow: 'hidden',
             background: 'var(--bg-secondary)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+            boxShadow: '0 6px 16px rgba(0,0,0,0.2)'
           }}>
             <img
               src={avatar}
@@ -65,7 +67,7 @@ const Hero = ({ personalInfo }) => {
         </div>
 
         {/* Developer Identity */}
-        <div style={{ marginTop: '28px', marginBottom: '20px' }}>
+        <div style={{ marginTop: '34px', marginBottom: '20px' }}>
           <h1 className="hero-name" style={{ fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: '4px' }}>
             {name}
           </h1>
@@ -77,10 +79,10 @@ const Hero = ({ personalInfo }) => {
         {/* Short Personal Introduction */}
         <div style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.65', marginBottom: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <p>
-            {bio1}
+            {renderFormattedText(bio1)}
           </p>
           <p style={{ color: 'var(--text-muted)' }}>
-            {bio2}
+            {renderFormattedText(bio2)}
           </p>
         </div>
 

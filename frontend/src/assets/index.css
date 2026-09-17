@@ -103,10 +103,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Centered Editorial Container */
 .editorial-container {
-  max-width: 680px;
+  max-width: 840px;
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .editorial-container {
+    max-width: 900px;
+  }
 }
 
 /* Section Wrapper Spacing */
@@ -198,6 +204,48 @@ h1, h2, h3, h4, h5, h6 {
 
 .editorial-input:focus {
   border-color: var(--border-hover);
+}
+
+textarea.editorial-input {
+  min-height: 110px;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Lighter Placeholder text color than normal text */
+::placeholder,
+.editorial-input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* Header Responsive Navigation Utilities */
+.header-desktop-nav {
+  display: flex !important;
+}
+
+.header-mobile-menu-links {
+  display: none !important;
+}
+
+.header-desktop-menu-links {
+  display: block !important;
+}
+
+@media (max-width: 640px) {
+  .header-desktop-nav {
+    display: none !important;
+  }
+  .header-mobile-menu-links {
+    display: block !important;
+  }
+  .header-desktop-menu-links {
+    display: none !important;
+  }
 }
 
 /* Toast Messages */
@@ -592,12 +640,12 @@ img, svg, video, canvas {
 
 @media (max-width: 480px) {
   .hero-banner-img {
-    height: 120px !important;
+    height: 140px !important;
   }
   .hero-avatar-img {
-    width: 76px !important;
-    height: 76px !important;
-    bottom: -14px !important;
+    width: 96px !important;
+    height: 96px !important;
+    bottom: -18px !important;
   }
   .hero-name {
     font-size: 1.45rem !important;

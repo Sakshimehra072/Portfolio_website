@@ -1,5 +1,6 @@
 import React from 'react';
 import { Quote as QuoteIcon } from 'lucide-react';
+import { renderFormattedText } from '../utils/formatText';
 
 const Quote = ({ quote }) => {
   const text = quote?.text || "What we do in life echoes in eternity.";
@@ -38,7 +39,7 @@ const Quote = ({ quote }) => {
             position: 'relative',
             zIndex: 1
           }}>
-            “{text}”
+            “{renderFormattedText(text)}”
           </p>
 
           <span style={{
